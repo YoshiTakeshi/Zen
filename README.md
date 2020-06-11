@@ -1,2 +1,1 @@
-# Zen
-Zen : A Decentralized Gold/Silver/Copper Monetary System.
+# Zen : A Decentralized Gold/Silver/Copper Monetary System.
