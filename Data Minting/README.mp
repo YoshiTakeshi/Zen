@@ -1,4 +1,4 @@
-#Data Minting
+# Data Minting
 
 A first version of Data Minting Algorithm.
 
