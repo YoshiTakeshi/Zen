@@ -23,3 +23,6 @@ Simplistic video intro : http://wmjtj2j57mcvs7ms.onion/Zen/zen.mp4
 
 ## Donation
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/YoshiTakeshi/Zen/master/img/donate.png" width="200" title="Donate">
+</p>
