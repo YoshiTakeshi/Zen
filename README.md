@@ -4,7 +4,7 @@ Zen : A Decentralized Gold/Silver/Copper Monetary System.
 (This project is still under research and developpement, any idea, question or critic are welcome)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/YoshiTakeshi/Zen/master/img/zen.png" width="100" title="Zen">
+  <img src="https://raw.githubusercontent.com/YoshiTakeshi/Zen/9228d4165fcf904aa760f57d9b2a9c4d32578ff8/img/zen.png" width="100" title="Zen">
 </p>
 
 Zen ("The Balance", "ⵣⴻⵏ", "全", "الميزان") is a decentralized monetary system build into 3 layers :
