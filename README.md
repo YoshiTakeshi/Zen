@@ -16,10 +16,10 @@ Zen try to solve 6 monetary points :
   5) Stream physical coins
   6) Geographical Wealth distribution
  
-# Links
+## Links
 Zen Webpage : http://wmjtj2j57mcvs7ms.onion/Zen/index.html
 
 Simplistic video intro : http://wmjtj2j57mcvs7ms.onion/Zen/zen.mp4
 
-# Donation
+## Donation
 
