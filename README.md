@@ -18,6 +18,7 @@ Zen try to solve 6 monetary points :
  
 # Links
 Zen Webpage : http://wmjtj2j57mcvs7ms.onion/Zen/index.html
+
 Simplistic video intro : http://wmjtj2j57mcvs7ms.onion/Zen/zen.mp4
 
 # Donation
