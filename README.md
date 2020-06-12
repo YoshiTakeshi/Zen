@@ -9,10 +9,10 @@ Zen ("The Balance", "ⵣⴻⵏ", "全", "الميزان") is a decentralized mon
   
 ## Points 
 Zen try to solve 6 monetary points :
-  1/ Mint physical coins
-  2/ Verify physical coins
-  3/ Store physical coins
-  4/ Send physical coins
-  5/ Stream physical coins
-  6/ Geographical Wealth distribution
+  1) Mint physical coins
+  2) Verify physical coins
+  3) Store physical coins
+  4) Send physical coins
+  5) Stream physical coins
+  6) Geographical Wealth distribution
   
