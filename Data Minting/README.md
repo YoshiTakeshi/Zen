@@ -1,6 +1,6 @@
 # Data Minting
 
-A first version of Data Minting Algorithm.
+A first version of Data Minting Algorithm Prototype.
 
 The test file is mario.gif at the size of 1ko. The algorithm generate a minted 2ko file which is bigger.
 
