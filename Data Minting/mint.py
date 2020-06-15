@@ -1,17 +1,7 @@
 import math
 import random
-import struct
-import itertools
-#import scipy.stats
 import pickle
 import os.path
-
-from scipy.spatial import Delaunay
-
-import mlrose
-import numpy as np
-import pandas as pd
-
 import matplotlib.pyplot as plt
 
 import datetime
