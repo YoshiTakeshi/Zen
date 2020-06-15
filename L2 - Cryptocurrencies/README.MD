@@ -1,17 +1,15 @@
-# Zen
-Zen : A Decentralized Gold/Silver/Copper Monetary System.
-(This project is still under research and developpement)
+# Cryptocurrencies
 
-Zen ("The Balance", "ⵣⴻⵏ", "全", "الميزان") is a decentralized monetary system build into 3 layers :
-  - Physical Coins (RTS)
-  - Cryptocurrencies (YKJ)
-  - Channel Factories (YKJ-Channels)
-  
+Zen's Cryptocurrencies are 3-in-1 cryptographic coins :
+  - Golden ratio coins (YEN)
+  - Silver ratio coins (KEN)
+  - Bronze ratio coins (JEN)
+
 ## Points 
-Zen try to solve 6 monetary points :
+Zen's Cryptocurrencies try to solve 2 of the 6 monetary points :
   1) Mint physical coins
   2) Verify physical coins
-  3) Store physical coins
-  4) Send physical coins
+  3) **Store physical coins**
+  4) **Send physical coins**
   5) Stream physical coins
   6) Geographical Wealth distribution
