@@ -5,6 +5,15 @@ Zen's Physical coins are 3 precious metal coins :
   - Silver coins (TEN)
   - Copper coins (SEN)
 
+## 3D Models
+<p align="center">
+  <img src="https://raw.githubusercontent.com/YoshiTakeshi/Zen/master/L1%20-%20Physical%20Coins/3D-Coins-Model.png" width="100%" title="Zen">
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/YoshiTakeshi/Zen/master/L1%20-%20Physical%20Coins/3D-Overview.png" width="100%" title="Zen">
+</p>
+
 ## Points 
 Zen's physical coins try to solve 2 of the 6 monetary points :
   1) **Mint physical coins**
