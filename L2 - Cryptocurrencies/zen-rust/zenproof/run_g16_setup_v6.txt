@@ -1,0 +1,3 @@
+[90m22:28:17[0m [33mWRN[0m [1mexporting solidity verifier only supports `sha256` as `HashToField`. The generated contract may not work for proofs generated with other hash functions.[0m
+RESULT setup: 1164.1s | proving key 2007 MB | verifying key 1008 bytes | peak 5968 MB
+DONE rc=0 secs=1164

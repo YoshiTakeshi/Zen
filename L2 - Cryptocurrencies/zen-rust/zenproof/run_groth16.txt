@@ -1,0 +1,9 @@
+== v2A
+RESULT groth16 verify: ok=true | 7.73 ms | 16 public inputs
+== v2B
+RESULT groth16 verify: ok=true | 8.92 ms | 16 public inputs
+== v2C
+RESULT groth16 verify: ok=true | 8.22 ms | 16 public inputs
+== block C proof with block A public values
+RESULT groth16 verify: ok=false | 4.17 ms | 16 public inputs | proof rejected
+groth16 verify in Rust: 4.21 ms per stamp (average of 20)

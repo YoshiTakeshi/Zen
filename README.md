@@ -30,3 +30,14 @@ Simplistic video intro : http://wmjtj2j57mcvs7ms.onion/Zen/zen.mp4
 <p align="center">
   <img src="https://raw.githubusercontent.com/YoshiTakeshi/Zen/master/img/donate.png" width="200" title="Donate">
 </p>
+
+## Electronic coins, proofs and the test network (new)
+
+- [`L2 - Cryptocurrencies/zen-rust`](L2%20-%20Cryptocurrencies/zen-rust): the reference node, wallet and three-chain test network in Rust, with one 196-byte proof per block and 137 automated tests. Test network only: no value, not audited, single-party proof key.
+- [`L2 - Cryptocurrencies/jen0-go-devnet`](L2%20-%20Cryptocurrencies/jen0-go-devnet) and [`pom-leaf-go`](L2%20-%20Cryptocurrencies/pom-leaf-go): the first Go prototypes of collaborative minting.
+- [`simulations`](simulations): the models behind the rules.
+- [`whitepaper`](whitepaper): white paper, draft 0.4.
+- [`docs`](docs): the project page (turn on GitHub Pages for the `/docs` folder of the master branch).
+- Video series: https://www.youtube.com/watch?v=c3Mrpw75twc
+
+Anything you help with is welcome: reviewing the circuits, fuzzing, testing, taking part in the public key ceremony. This repository has no licence file yet; choose one before inviting contributions.

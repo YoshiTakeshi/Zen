@@ -1,0 +1,323 @@
+   Compiling zenproof v0.1.0 (/home/claude/zkbench/zenproof)
+warning: unused import: `Field64`
+  --> src/tx.rs:16:36
+   |
+16 | use plonky2::field::types::{Field, Field64, PrimeField64};
+   |                                    ^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `Path`
+ --> src/testnet.rs:8:17
+  |
+8 | use std::path::{Path, PathBuf};
+  |                 ^^^^
+
+warning: value assigned to `b2` is never read
+   --> src/blockdata.rs:356:34
+    |
+356 |         assert_eq!(b2.bal, 100); b2.bal = 0;
+    |                                  ^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `h` is never read
+   --> src/seal.rs:145:66
+    |
+145 | ...   if BigUint::from_bytes_le(&sha256d(&hb)) <= target { h.nonce = nonce; return Some((Share { extranonce2: en2b, ntime, nonce, v...
+    |                                                            ^^^^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+
+warning: variable does not need to be mutable
+   --> src/node.rs:940:13
+    |
+940 |         let mut dest = |a: &[F; 4], addr_idx: &mut HashMap<[u64; 4], u64>, taken: &mut HashSet<u64>| -> Dest {
+    |             ----^^^^
+    |             |
+    |             help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `end` is never read
+   --> src/store.rs:76:23
+    |
+ 76 |         let mut end = len;
+    |                       ^^^ this value is reassigned later and never used
+...
+109 |             end = pos;
+    |             --------- `end` is overwritten here before the previous value is read
+
+warning: variable does not need to be mutable
+   --> src/p2p.rs:868:13
+    |
+868 |         let mut mine = |net: &mut dev::Devnet, txs: Vec<crate::tx::SignedPay>| -> Result<crate::node::Block> {
+    |             ----^^^^
+    |             |
+    |             help: remove this `mut`
+
+warning: variable does not need to be mutable
+   --> src/p2p.rs:970:13
+    |
+970 |         let mut node = open(&dn).unwrap();
+    |             ----^^^^
+    |             |
+    |             help: remove this `mut`
+
+warning: unused variable: `n`
+   --> src/prover.rs:272:9
+    |
+272 |     let n = c.n;
+    |         ^
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: you might have meant to pattern match on the similarly named constant `D`
+    |
+272 -     let n = c.n;
+272 +     let ec::D = c.n;
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+272 |     let _n = c.n;
+    |         +
+
+warning: variable does not need to be mutable
+   --> src/prover.rs:554:13
+    |
+554 |         let mut build = |net: &mut dev::Devnet, pays: &[DevPay], reqs: &[OpReq]| {
+    |             ----^^^^^
+    |             |
+    |             help: remove this `mut`
+
+warning: unused variable: `spend`
+   --> src/main.rs:934:17
+    |
+934 |             let spend = p.amt + p.fee;
+    |                 ^^^^^ help: if this is intentional, prefix it with an underscore: `_spend`
+
+warning: field `height` is never read
+   --> src/p2p.rs:382:38
+    |
+382 | pub struct Probe { s: TcpStream, pub height: u64, pub tip: [u8; 32] }
+    |            -----                     ^^^^^^
+    |            |
+    |            field in this struct
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `attach_ops` is never used
+  --> src/prover.rs:91:12
+   |
+90 | impl ProverMaker { pub fn new(circ: Arc<Circuits>, keys: Vec<crate::mint::Key>) -> Self { ProverMaker { circ, keys, store: Default::...
+   | ---------------- method in this implementation
+91 |     pub fn attach_ops(&self, pool: Arc<std::sync::Mutex<crate::locks::OpPool>>) { *self.ops_pool.lock().unwrap() = Some(pool); } }
+   |            ^^^^^^^^^^
+
+warning: associated function `jen` is never used
+  --> src/reading.rs:83:26
+   |
+83 | impl ReadParams { pub fn jen() -> Self { ReadParams { std_fee_pm: 10, cap_bp: 3, min_obs: 100 } } }
+   | ---------------          ^^^
+   | |
+   | associated function in this implementation
+
+warning: methods `get`, `contains`, and `pending_spend` are never used
+  --> src/mempool.rs:40:12
+   |
+37 | impl Mempool {
+   | ------------ methods in this implementation
+...
+40 |     pub fn get(&self, id: &[u8; 32]) -> Option<&SignedPay> { self.txs.get(id).map(|e| &e.tx) }
+   |            ^^^
+41 |     pub fn contains(&self, id: &[u8; 32]) -> bool { self.txs.contains_key(id) }
+   |            ^^^^^^^^
+...
+54 |     pub fn pending_spend(&self, addr: &[F; 4]) -> u128 {
+   |            ^^^^^^^^^^^^^
+
+warning: field `me` is never read
+   --> src/crosschain.rs:102:27
+    |
+102 | pub struct Observer { pub me: u8, pub views: Arc<Mutex<BTreeMap<u8, HeaderChain>>>, pub last_error: Arc<Mutex<BTreeMap<u8, String>>> }
+    |            --------       ^^
+    |            |
+    |            field in this struct
+
+warning: method `lock` is never used
+   --> src/locks.rs:416:12
+    |
+413 | impl OpReq {
+    | ---------- method in this implementation
+...
+416 |     pub fn lock(&self) -> Option<[F; 4]> { match self { OpReq::Make { .. } => None, OpReq::VaultClaim { lock, .. } | OpReq::VaultRe...
+    |            ^^^^
+
+warning: method `next_nonce` is never used
+   --> src/locks.rs:545:12
+    |
+538 | impl OpPool {
+    | ----------- method in this implementation
+...
+545 |     pub fn next_nonce(&self, chain: &crate::node::Chain, from: &[F; 4]) -> Option<u64> { Some(chain.account(from)?.1.nonce + self.w...
+    |            ^^^^^^^^^^
+
+warning: field `new` is never read
+   --> src/locks.rs:637:61
+    |
+637 | pub struct Touch { pub idx: u64, pub old: Option<Acct>, pub new: Option<Acct>, pub sibs: Vec<HashOut<F>> }
+    |            ----- field in this struct                       ^^^
+    |
+    = note: `Touch` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: fields `chan` and `amount` are never read
+   --> src/route.rs:169:119
+    |
+169 | ...ct Pay { sum_offsets: [u8; 40], invoice_point: [u8; 41], status: String, receipt: Option<String>, reason: String, chan: [u8; 32], amount: u...
+    |       --- fields in this struct                                                                                      ^^^^            ^^^^^^
+    |
+    = note: `Pay` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: `zenproof` (bin "zenproof" test) generated 20 warnings (run `cargo fix --bin "zenproof" -p zenproof --tests` to apply 8 suggestions)
+    Finished `release` profile [optimized] target(s) in 1m 29s
+     Running unittests src/main.rs (target/release/deps/zenproof-5b4cbeade622b0ea)
+
+running 122 tests
+test api::tests::amounts_in_grams_are_exact ... ok
+test api::tests::the_api_refuses_what_it_should ... ok
+test api::tests::the_explorer_page_is_served_and_is_safe ... ok
+test api::tests::the_token_is_kept_between_runs ... ok
+test blockdata::peg_tests::invariants_hold_under_random_use ... ok
+test blockdata::peg_tests::loop_counts_once_per_rest_period ... ok
+test blockdata::peg_tests::rested_money_counts_once_per_period_even_when_fresh_is_spent_first ... ok
+test bn::bench2::bench_permute ... ignored
+test bn::bench2::mul_speed ... ok
+test bn::bench::permute_speed ... ok
+test bn::tests::pack_and_to_vec_match_bigint ... ok
+test channel::tests::a_factory_members_channel_signs_with_the_factorys_message_and_not_a_plain_channels ... ok
+test channel::tests::a_point_lock_is_added_opened_or_given_back_and_nothing_else_is_accepted ... ok
+test channel::tests::a_side_that_missed_the_acknowledgement_catches_up_from_the_peers_signed_state_and_a_joint_close_is_signed_by_both ... ok
+test channel::tests::a_stream_is_signed_by_the_payer_alone_and_only_forward ... ok
+test channel::tests::payments_go_both_ways_and_the_file_survives_a_save ... ok
+test api::tests::the_api_shows_the_chain_and_takes_a_payment_only_with_the_token ... ok
+test crosschain::tests::a_follower_checks_a_chain_header_by_header_and_follows_a_reorg ... ok
+test crosschain::tests::a_follower_refuses_what_a_light_client_can_see_is_wrong ... ok
+test crosschain::tests::a_follower_over_the_network_takes_blocks_from_a_node_checks_them_and_follows_a_reorg ... ok
+test ec::tests::dbladd_rejects_equal_points ... ok
+test ec::tests::s_less_than_n ... ok
+test groth16::tests::a_stamp_of_a_current_block_verifies_under_the_current_key ... ok
+test groth16::tests::as_a_node_stamp_verifier ... ok
+test groth16::tests::expand_message_xmd_matches_rfc_9380_vectors ... ok
+test groth16::tests::gnark_proofs_verify_and_everything_else_does_not ... ok
+test crosschain::tests::the_observer_keeps_the_longest_valid_chain_among_the_nodes_it_follows_and_survives_a_dead_one ... ok
+test locks::tests::a_channel_closes_at_once_when_both_sign_and_either_side_can_start_a_close_from_nothing ... ok
+test locks::tests::a_batch_auction_gives_the_order_to_the_highest_escrow_not_to_the_first_in_the_block has been running for over 60 seconds
+test locks::tests::a_channel_takes_the_newest_signed_state_and_pays_each_side_after_the_window ... ok
+test locks::tests::a_factory_holds_many_members_channels_and_one_member_can_leave_without_closing_the_others has been running for over 60 seconds
+test locks::tests::a_factory_holds_many_members_channels_and_one_member_can_leave_without_closing_the_others ... ok
+test locks::tests::a_batch_auction_gives_the_order_to_the_highest_escrow_not_to_the_first_in_the_block ... ok
+test locks::tests::a_locks_address_follows_every_field_of_its_terms_and_every_state ... ok
+test locks::tests::a_lock_with_odd_terms_is_refused ... ok
+test locks::tests::a_payment_that_is_short_early_unconfirmed_or_to_someone_else_releases_nothing has been running for over 60 seconds
+test locks::tests::a_payment_that_is_short_early_unconfirmed_or_to_someone_else_releases_nothing ... ok
+test locks::tests::a_payment_to_an_account_that_already_existed_is_proven_by_its_leaf ... ok
+test locks::tests::a_point_lock_in_a_closing_channel_pays_its_receiver_on_the_scalar_or_its_sender_after_expiry has been running for over 60 seconds
+test locks::tests::a_point_lock_in_a_closing_channel_pays_its_receiver_on_the_scalar_or_its_sender_after_expiry ... ok
+test locks::tests::a_reservation_that_runs_out_reopens_the_order_and_an_expired_order_comes_back has been running for over 60 seconds
+test locks::tests::a_reservation_that_runs_out_reopens_the_order_and_an_expired_order_comes_back ... ok
+test locks::tests::a_vault_claim_signed_for_one_chain_is_refused_on_another ... ok
+test locks::tests::a_stream_is_one_number_signed_by_the_payer_alone ... ok
+test locks::tests::an_amount_so_large_that_amount_plus_fee_wraps_is_refused ... ok
+test locks::tests::a_vault_is_spent_by_its_key_before_the_timeout_and_returns_to_its_owner_after ... ok
+test locks::tests::an_order_is_made_reserved_paid_on_the_other_chain_and_claimed ... ok
+test locks::tests::b_can_add_its_own_coins_to_a_channel_before_any_update ... ok
+test locks::tests::operations_and_terms_round_trip_and_terms_change_the_address ... ok
+test locks::tests::signed_ops_and_the_pool ... ok
+test market::tests::a_rate_needs_enough_different_traders_and_follows_the_volume_median ... ok
+test mempool::tests::a_payment_comes_back_when_its_block_is_lost_in_a_reorg ... ok
+test mempool::tests::admission_rules ... ok
+test mempool::tests::full_pool_keeps_the_best_rates ... ok
+test mempool::tests::replacement_never_strands_later_payments ... ok
+test mempool::tests::selection_orders_by_rate_and_nonce_and_blocks_clear_the_pool ... ok
+test mint::tests::point_roundtrip_and_subgroup ... ok
+test mint::tests::retarget_rule ... ok
+test mint::tests::signatures ... ok
+test netconf::tests::a_bad_file_is_refused_with_the_line_and_the_reason ... ok
+test netconf::tests::a_file_reads_back_the_same_and_defaults_follow_the_chain ... ok
+test netconf::tests::a_node_opens_on_the_file_and_peers_with_another_file_are_refused ... ok
+test netconf::tests::anything_that_changes_what_is_valid_changes_the_network_id ... ok
+test netconf::tests::init_writes_a_file_no_secret_and_keys_that_match ... ok
+test locks::tests::locks_survive_a_snapshot_and_a_restart_and_the_root_commits_to_them ... ok
+test node::tests::a_reward_is_drawn_from_the_next_seal_and_paid_two_blocks_later ... ok
+test node::tests::a_reward_is_held_for_the_maturity_period_and_then_credited ... ok
+test node::tests::blocks_with_nothing_in_them_are_blocks ... ok
+test node::tests::a_snapshot_restores_the_chain_exactly_and_bad_ones_are_refused ... ok
+test node::tests::chain_accepts_blocks_and_rejects_each_kind_of_bad_block ... ok
+test node::tests::restart_from_the_log_gives_the_same_chain ... ok
+test node::tests::seal_difficulty_follows_the_window ... ok
+test opcirc::tests::a_claim_can_open_a_new_account_for_the_money ... ok
+test opcirc::tests::a_vault_is_made_claimed_and_refunded_with_proofs_that_match_the_nodes_own_replay ... ok
+test node::tests::s_is_read_from_payments_across_a_day_boundary ... ok
+test opcirc::tests::the_vault_leaf_builds_and_its_size_is_known ... ok
+test p2p::tests::a_block_with_a_groth16_stamp_is_accepted_by_a_node_with_only_the_verifying_key ... ok
+test opcirc::tests::the_timeout_edge_and_inflated_balances_are_exact ... ok
+test p2p::tests::a_chain_longer_than_the_orphan_buffer_syncs_forward has been running for over 60 seconds
+test p2p::tests::a_node_restarts_from_a_snapshot_and_falls_back_to_the_whole_log_when_it_must has been running for over 60 seconds
+test p2p::tests::a_chain_longer_than_the_orphan_buffer_syncs_forward ... ok
+test p2p::tests::a_node_restarts_from_its_log_serves_old_blocks_from_disk_and_repairs_a_torn_write has been running for over 60 seconds
+test p2p::tests::a_node_restarts_from_a_snapshot_and_falls_back_to_the_whole_log_when_it_must ... ok
+test p2p::tests::a_stratum_client_cannot_send_an_endless_line ... ok
+test p2p::tests::an_empty_block_gets_a_real_stamp ... ok
+test p2p::tests::connection_limits_and_timeouts ... ok
+test p2p::tests::a_node_restarts_from_its_log_serves_old_blocks_from_disk_and_repairs_a_torn_write ... ok
+test p2p::tests::fork_choice_orphans_and_reorg ... ok
+test p2p::tests::peers_find_each_other ... ok
+test p2p::tests::peers_that_break_the_rules_are_banned ... ok
+test p2p::tests::old_snapshots_are_dropped_and_forks_too_deep_are_stale has been running for over 60 seconds
+test p2p::tests::old_snapshots_are_dropped_and_forks_too_deep_are_stale ... ok
+test p2p::tests::proving_in_parallel_gives_a_valid_stamp has been running for over 60 seconds
+test p2p::tests::real_proofs_carry_a_new_wallets_own_signature has been running for over 60 seconds
+test p2p::tests::proving_in_parallel_gives_a_valid_stamp ... ok
+test p2p::tests::real_proofs_carry_a_new_wallets_own_signature ... ok
+test p2p::tests::stratum_miner_seals_a_block_and_the_node_relays_it ... ok
+test p2p::tests::real_stamps_are_verified_by_the_node has been running for over 60 seconds
+test p2p::tests::two_nodes_sync_and_relay_over_tcp ... ok
+test p2p::tests::validation_runs_outside_the_node_lock ... ok
+test p2p::tests::real_stamps_are_verified_by_the_node ... ok
+test p2p::tests::wallet_to_mempool_to_block_over_tcp ... ok
+test prover::speed::wrap_speed_experiments ... ignored
+test reading::tests::follows_slowly_within_the_band ... ok
+test reading::tests::hard_bound_of_a_maximal_push ... ok
+test reading::tests::push_is_bounded ... ok
+test reading::tests::reads_the_ratio ... ok
+test reading::tests::standard_fee_and_cap ... ok
+test reading::tests::table_is_log_spaced ... ok
+test reward::tests::averages_and_the_split_match_the_spec ... ok
+test reward::tests::jen_matches_the_go_reference_to_the_last_picogram ... ok
+test reward::tests::log2_and_the_raw_curve_match_floating_point ... ok
+test reward::tests::nanograms_keep_every_balance_in_range_for_ten_thousand_years ... ok
+test reward::tests::payouts_add_up_exactly ... ok
+test reward::tests::supply_after_a_year_matches_the_table ... ok
+test reward::tests::the_random_factor_is_r_to_the_z ... ok
+test reward::tests::the_table_is_a_normal_quantile_function ... ok
+test reward::tests::the_table_is_the_published_one ... ok
+test reward::tests::yens_first_hundred_blocks_have_no_random_factor ... ok
+test route::tests::a_stream_node_asks_for_the_other_metal_at_its_price_plus_fee_and_spread ... ok
+test route::tests::an_onion_reaches_each_hop_in_turn_and_only_the_right_node_can_open_its_layer ... ok
+test route::tests::offsets_make_each_hops_point_different_and_the_receivers_secret_opens_them_all ... ok
+test seal::tests::bitcoin_genesis ... ok
+test seal::tests::compact_bits ... ok
+test store::tests::a_second_node_cannot_open_a_directory_in_use ... ok
+test store::tests::a_torn_tail_is_cut_at_every_possible_length ... ok
+test store::tests::crc32_matches_the_standard_check_value ... ok
+test store::tests::damage_in_the_middle_is_an_error_and_damage_in_the_last_record_is_a_torn_write ... ok
+test store::tests::records_come_back_and_survive_a_reopen ... ok
+test transport::tests::a_copy_of_a_request_inside_the_time_window_is_refused_but_a_new_request_is_not ... ok
+test transport::tests::a_request_and_its_answer_open_only_for_the_right_keys_and_only_once_fresh ... ok
+test tx::tests::addresses_and_wallet_files ... ok
+test tx::tests::roundtrip_sign_verify_and_tamper ... ok
+test prover::op_tests::real_stamps_carry_vault_operations_and_the_node_checks_them has been running for over 60 seconds
+test prover::op_tests::real_stamps_carry_vault_operations_and_the_node_checks_them ... ok
+
+test result: ok. 120 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 1102.85s
+

@@ -1,0 +1,19 @@
+== real Plonky2 stamps: node A (pool proves, verifies), node B (verifies), Stratum-only miner on A (2 blocks)
+-- node A
+state leaf: 4252 gates before the slots (proof check, day)
+state leaf: slot gates 233
+state leaf: 8043 gates before padding
+circuits built in 26.5s
+zen node stage 2 | p2p 127.0.0.1:18444 | stratum 127.0.0.1:13333 | height 0
+height 0 | tip ed56f93b10284517 | peers 0 | shares accepted 0 rejected 0
+height 1 | tip 64aedf07a669248e | peers 1 | shares accepted 1 rejected 0
+height 2 | tip 5b1ecbf7ffef5857 | peers 1 | shares accepted 2 rejected 0
+-- node B
+state leaf: 4252 gates before the slots (proof check, day)
+state leaf: slot gates 233
+state leaf: 8043 gates before padding
+circuits built in 27.2s
+zen node stage 2 | p2p 127.0.0.1:18445 | stratum 127.0.0.1:13334 | height 0
+height 0 | tip ed56f93b10284517 | peers 1 | shares accepted 0 rejected 0
+height 1 | tip 64aedf07a669248e | peers 1 | shares accepted 0 rejected 0
+height 2 | tip 5b1ecbf7ffef5857 | peers 1 | shares accepted 0 rejected 0

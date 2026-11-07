@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zen wallet</title>
+<style>
+:root{--ink:#1b1b1a;--ink2:#5d5b57;--rule:#d8d6d0;--wash:#f6f3ee;--bg:#fff;--yen:#c98500;--ken:#2a78d6;--jen:#d95926;--ok:#2d7a46;--bad:#b3261e}
+@media (prefers-color-scheme:dark){:root{--ink:#eceae5;--ink2:#a6a39c;--rule:#3a3935;--wash:#22211f;--bg:#161615;--ok:#6cc48a;--bad:#f2837c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif}
+main{max-width:640px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:1.5rem;margin:0 0 4px}h2{font-size:1.05rem;margin:28px 0 10px}
+.muted{color:var(--ink2);font-size:.9rem}
+.addr{display:flex;gap:8px;align-items:center;background:var(--wash);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;margin-top:10px}
+.addr code{flex:1;word-break:break-all;font-size:.82rem}
+button{font:inherit;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer}
+button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ken);outline-offset:2px}
+.cards{display:grid;gap:10px}
+.card{border:1px solid var(--rule);border-left-width:5px;border-radius:8px;padding:12px 14px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.card .n{font-weight:600}.card .v{font-variant-numeric:tabular-nums;text-align:right}.card .v small{display:block;color:var(--ink2)}
+.yen{border-left-color:var(--yen)}.ken{border-left-color:var(--ken)}.jen{border-left-color:var(--jen)}
+form{display:grid;gap:12px}label{display:grid;gap:4px;font-size:.9rem;color:var(--ink2)}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;width:100%}
+.msg{min-height:1.5em;font-size:.95rem}.msg.ok{color:var(--ok)}.msg.bad{color:var(--bad)}
+a{color:var(--ken)}
+</style></head><body><main>
+<h1>Zen wallet</h1>
+<p class="muted">Test network. These coins have no value. The key stays in the file on this computer.</p>
+<div class="addr"><code id="addr">…</code><button id="copy" type="button">Copy</button></div>
+
+<h2>Balances</h2>
+<div class="cards" id="cards"></div>
+<p class="muted" id="status"></p>
+
+<h2>Send</h2>
+<form id="f">
+  <label>Chain<select id="chain"><option value="2">Bronze Jen</option><option value="1">Silver Ken</option><option value="0">Golden Yen</option></select></label>
+  <label>To (address starting with zen1)<input id="to" autocomplete="off" spellcheck="false" required></label>
+  <label>Amount in grams<input id="amt" inputmode="decimal" placeholder="0.5" required></label>
+  <p class="muted" id="fee"></p>
+  <button class="primary" type="submit">Send</button>
+  <div class="msg" id="msg" role="status"></div>
+</form>
+
+<h2>Explorers</h2>
+<p><a id="x2" target="_blank" rel="noopener">Jen</a> · <a id="x1" target="_blank" rel="noopener">Ken</a> · <a id="x0" target="_blank" rel="noopener">Yen</a></p>
+</main>
+<script>
+const TOKEN="__TOKEN__";const $=id=>document.getElementById(id);
+const names=["Golden Yen","Silver Ken","Bronze Jen"],cls=["yen","ken","jen"];
+const grams=u=>{const s=BigInt(u),w=s/1000000000n,f=(s%1000000000n).toString().padStart(9,"0").replace(/0+$/,"");return w+(f?"."+f:"")};
+async function info(){
+  try{const r=await fetch("/w/info");const j=await r.json();
+    $("addr").textContent=j.address;
+    $("cards").innerHTML=[2,1,0].map(i=>{const c=j.chains[i];
+      const v=c.error?`<span class="muted">node not reachable</span>`:c.found?`${grams(c.balance)} g<small>${c.balance} base units · block ${c.height}</small>`:`no account yet<small>block ${c.height}</small>`;
+      return `<div class="card ${cls[i]}"><span class="n">${names[i]}</span><span class="v">${v}</span></div>`}).join("");
+    [0,1,2].forEach(i=>$("x"+i).href="http://127.0.0.1:"+(j.base+20+i)+"/");
+    $("status").textContent="Updated "+new Date().toLocaleTimeString();
+  }catch(e){$("status").textContent="Cannot reach the wallet program."}
+}
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("addr").textContent);$("copy").textContent="Copied";setTimeout(()=>$("copy").textContent="Copy",1500)}catch(e){}};
+$("amt").oninput=()=>{const a=parseFloat($("amt").value);$("fee").textContent=a>0?"Fee: about 1% ("+(a*0.01).toFixed(6)+" g) added by the wallet.":""};
+$("f").onsubmit=async e=>{e.preventDefault();const m=$("msg");m.className="msg";m.textContent="Sending…";
+  try{const r=await fetch("/w/pay",{method:"POST",headers:{"Content-Type":"application/json","X-Zen-Token":TOKEN},body:JSON.stringify({chain:+$("chain").value,to:$("to").value.trim(),amount:$("amt").value.trim()})});
+    const j=await r.json();
+    if(!r.ok){m.className="msg bad";m.textContent=j.error||"Not sent."}
+    else{m.className="msg ok";m.textContent="Sent "+j.sent+" with fee "+j.fee+" base units. It is in the next block (about "+j.wait+" seconds).";$("amt").value="";$("fee").textContent="";setTimeout(info,3000)}
+  }catch(e){m.className="msg bad";m.textContent="Not sent: the wallet program did not answer."}};
+info();setInterval(info,10000);
+</script></body></html>

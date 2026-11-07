@@ -1,0 +1,19 @@
+# docker compose up -d      the three-chain Zen testnet, mining by itself, on this machine
+# Open http://localhost:18461/ (Ken explorer); Yen is on 18460, Jen on 18462. The ports are published on this machine's loopback only;
+# to open them to a network, change "127.0.0.1:" to "0.0.0.0:" (only on a testnet: the keys in /data are test keys).
+services:
+  zen:
+    image: ${ZEN_IMAGE:-ghcr.io/OWNER/zen:latest}
+    build: .
+    restart: unless-stopped
+    environment:
+      ZEN_AUTOMINE: "1"
+      ZEN_BLOCK_SECS: "${ZEN_BLOCK_SECS:-20}"
+    ports:
+      - "127.0.0.1:18440-18442:18440-18442"   # p2p: Yen, Ken, Jen
+      - "127.0.0.1:18450-18452:18450-18452"   # Stratum (miners)
+      - "127.0.0.1:18460-18462:18460-18462"   # API and explorer
+    volumes:
+      - zen-data:/data
+volumes:
+  zen-data:

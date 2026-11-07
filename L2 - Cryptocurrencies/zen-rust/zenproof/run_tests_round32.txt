@@ -1,0 +1,193 @@
+   Compiling zenproof v0.1.0 (/home/claude/zkbench/zenproof)
+warning: unused import: `Field64`
+  --> src/tx.rs:16:36
+   |
+16 | use plonky2::field::types::{Field, Field64, PrimeField64};
+   |                                    ^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `b2` is never read
+   --> src/blockdata.rs:333:34
+    |
+333 |         assert_eq!(b2.bal, 100); b2.bal = 0;
+    |                                  ^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `h` is never read
+   --> src/seal.rs:145:66
+    |
+145 | ...   if BigUint::from_bytes_le(&sha256d(&hb)) <= target { h.nonce = nonce; return Some((Share { extranonce2: en2b, ntime, nonce, v...
+    |                                                            ^^^^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+
+warning: value assigned to `end` is never read
+   --> src/store.rs:76:23
+    |
+ 76 |         let mut end = len;
+    |                       ^^^ this value is reassigned later and never used
+...
+109 |             end = pos;
+    |             --------- `end` is overwritten here before the previous value is read
+
+warning: variable does not need to be mutable
+   --> src/p2p.rs:807:13
+    |
+807 |         let mut mine = |net: &mut dev::Devnet, txs: Vec<crate::tx::SignedPay>| -> Result<crate::node::Block> {
+    |             ----^^^^
+    |             |
+    |             help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+   --> src/p2p.rs:909:13
+    |
+909 |         let mut node = open(&dn).unwrap();
+    |             ----^^^^
+    |             |
+    |             help: remove this `mut`
+
+warning: unused variable: `n`
+   --> src/prover.rs:257:9
+    |
+257 |     let n = c.n;
+    |         ^
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: you might have meant to pattern match on the similarly named constant `D`
+    |
+257 -     let n = c.n;
+257 +     let ec::D = c.n;
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+257 |     let _n = c.n;
+    |         +
+
+warning: unused variable: `spend`
+   --> src/main.rs:913:17
+    |
+913 |             let spend = p.amt + p.fee;
+    |                 ^^^^^ help: if this is intentional, prefix it with an underscore: `_spend`
+
+warning: associated function `jen` is never used
+  --> src/reading.rs:83:26
+   |
+83 | impl ReadParams { pub fn jen() -> Self { ReadParams { std_fee_pm: 10, cap_bp: 3, min_obs: 100 } } }
+   | ---------------          ^^^
+   | |
+   | associated function in this implementation
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `get`, `contains`, and `pending_spend` are never used
+  --> src/mempool.rs:40:12
+   |
+37 | impl Mempool {
+   | ------------ methods in this implementation
+...
+40 |     pub fn get(&self, id: &[u8; 32]) -> Option<&SignedPay> { self.txs.get(id).map(|e| &e.tx) }
+   |            ^^^
+41 |     pub fn contains(&self, id: &[u8; 32]) -> bool { self.txs.contains_key(id) }
+   |            ^^^^^^^^
+...
+54 |     pub fn pending_spend(&self, addr: &[F; 4]) -> u128 {
+   |            ^^^^^^^^^^^^^
+
+warning: `zenproof` (bin "zenproof" test) generated 10 warnings (run `cargo fix --bin "zenproof" -p zenproof --tests` to apply 5 suggestions)
+    Finished `release` profile [optimized] target(s) in 1m 12s
+     Running unittests src/main.rs (target/release/deps/zenproof-5b4cbeade622b0ea)
+
+running 78 tests
+test api::tests::amounts_in_grams_are_exact ... ok
+test api::tests::the_api_refuses_what_it_should ... ok
+test api::tests::the_explorer_page_is_served_and_is_safe ... ok
+test api::tests::the_token_is_kept_between_runs ... ok
+test blockdata::peg_tests::invariants_hold_under_random_use ... ok
+test blockdata::peg_tests::loop_counts_once_per_rest_period ... ok
+test blockdata::peg_tests::rested_money_counts_once_per_period_even_when_fresh_is_spent_first ... ok
+test bn::bench2::bench_permute ... ignored
+test bn::bench2::mul_speed ... ok
+test bn::bench::permute_speed ... ok
+test bn::tests::pack_and_to_vec_match_bigint ... ok
+test ec::tests::dbladd_rejects_equal_points ... ok
+test ec::tests::s_less_than_n ... ok
+test groth16::tests::a_stamp_of_a_current_block_verifies_under_the_current_key ... ok
+test groth16::tests::as_a_node_stamp_verifier ... ok
+test groth16::tests::expand_message_xmd_matches_rfc_9380_vectors ... ok
+test groth16::tests::gnark_proofs_verify_and_everything_else_does_not ... ok
+test api::tests::the_api_shows_the_chain_and_takes_a_payment_only_with_the_token ... ok
+test mempool::tests::admission_rules ... ok
+test mempool::tests::full_pool_keeps_the_best_rates ... ok
+test mempool::tests::replacement_never_strands_later_payments ... ok
+test mempool::tests::selection_orders_by_rate_and_nonce_and_blocks_clear_the_pool ... ok
+test mint::tests::point_roundtrip_and_subgroup ... ok
+test mint::tests::retarget_rule ... ok
+test mint::tests::signatures ... ok
+test mempool::tests::a_payment_comes_back_when_its_block_is_lost_in_a_reorg ... ok
+test node::tests::a_reward_is_drawn_from_the_next_seal_and_paid_two_blocks_later ... ok
+test node::tests::a_reward_is_held_for_the_maturity_period_and_then_credited ... ok
+test node::tests::blocks_with_nothing_in_them_are_blocks ... ok
+test node::tests::a_snapshot_restores_the_chain_exactly_and_bad_ones_are_refused ... ok
+test node::tests::chain_accepts_blocks_and_rejects_each_kind_of_bad_block ... ok
+test node::tests::restart_from_the_log_gives_the_same_chain ... ok
+test node::tests::seal_difficulty_follows_the_window ... ok
+test p2p::tests::a_block_with_a_groth16_stamp_is_accepted_by_a_node_with_only_the_verifying_key ... ok
+test node::tests::s_is_read_from_payments_across_a_day_boundary ... ok
+test p2p::tests::a_chain_longer_than_the_orphan_buffer_syncs_forward has been running for over 60 seconds
+test p2p::tests::a_node_restarts_from_a_snapshot_and_falls_back_to_the_whole_log_when_it_must has been running for over 60 seconds
+test p2p::tests::a_chain_longer_than_the_orphan_buffer_syncs_forward ... ok
+test p2p::tests::a_node_restarts_from_its_log_serves_old_blocks_from_disk_and_repairs_a_torn_write has been running for over 60 seconds
+test p2p::tests::a_node_restarts_from_a_snapshot_and_falls_back_to_the_whole_log_when_it_must ... ok
+test p2p::tests::a_stratum_client_cannot_send_an_endless_line ... ok
+test p2p::tests::an_empty_block_gets_a_real_stamp ... ok
+test p2p::tests::connection_limits_and_timeouts ... ok
+test p2p::tests::a_node_restarts_from_its_log_serves_old_blocks_from_disk_and_repairs_a_torn_write ... ok
+test p2p::tests::fork_choice_orphans_and_reorg ... ok
+test p2p::tests::peers_find_each_other ... ok
+test p2p::tests::peers_that_break_the_rules_are_banned ... ok
+test p2p::tests::old_snapshots_are_dropped_and_forks_too_deep_are_stale has been running for over 60 seconds
+test p2p::tests::old_snapshots_are_dropped_and_forks_too_deep_are_stale ... ok
+test p2p::tests::proving_in_parallel_gives_a_valid_stamp has been running for over 60 seconds
+test p2p::tests::real_proofs_carry_a_new_wallets_own_signature has been running for over 60 seconds
+test p2p::tests::proving_in_parallel_gives_a_valid_stamp ... ok
+test p2p::tests::real_proofs_carry_a_new_wallets_own_signature ... ok
+test p2p::tests::stratum_miner_seals_a_block_and_the_node_relays_it ... ok
+test p2p::tests::real_stamps_are_verified_by_the_node has been running for over 60 seconds
+test p2p::tests::two_nodes_sync_and_relay_over_tcp ... ok
+test p2p::tests::real_stamps_are_verified_by_the_node ... ok
+test p2p::tests::validation_runs_outside_the_node_lock ... ok
+test prover::speed::wrap_speed_experiments ... ignored
+test reading::tests::follows_slowly_within_the_band ... ok
+test reading::tests::hard_bound_of_a_maximal_push ... ok
+test reading::tests::push_is_bounded ... ok
+test reading::tests::reads_the_ratio ... ok
+test reading::tests::standard_fee_and_cap ... ok
+test reading::tests::table_is_log_spaced ... ok
+test reward::tests::averages_and_the_split_match_the_spec ... ok
+test reward::tests::jen_matches_the_go_reference_to_the_last_picogram ... ok
+test reward::tests::log2_and_the_raw_curve_match_floating_point ... ok
+test reward::tests::nanograms_keep_every_balance_in_range_for_ten_thousand_years ... ok
+test reward::tests::payouts_add_up_exactly ... ok
+test reward::tests::supply_after_a_year_matches_the_table ... ok
+test reward::tests::the_random_factor_is_r_to_the_z ... ok
+test reward::tests::the_table_is_a_normal_quantile_function ... ok
+test reward::tests::the_table_is_the_published_one ... ok
+test reward::tests::yens_first_hundred_blocks_have_no_random_factor ... ok
+test seal::tests::bitcoin_genesis ... ok
+test seal::tests::compact_bits ... ok
+test store::tests::a_second_node_cannot_open_a_directory_in_use ... ok
+test store::tests::a_torn_tail_is_cut_at_every_possible_length ... ok
+test store::tests::crc32_matches_the_standard_check_value ... ok
+test store::tests::damage_in_the_middle_is_an_error_and_damage_in_the_last_record_is_a_torn_write ... ok
+test store::tests::records_come_back_and_survive_a_reopen ... ok
+test tx::tests::addresses_and_wallet_files ... ok
+test tx::tests::roundtrip_sign_verify_and_tamper ... ok
+test p2p::tests::wallet_to_mempool_to_block_over_tcp ... ok
+
+test result: ok. 76 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 549.82s
+

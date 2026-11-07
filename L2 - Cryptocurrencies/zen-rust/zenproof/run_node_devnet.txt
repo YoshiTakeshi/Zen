@@ -1,0 +1,16 @@
+zen node stage 1 | devnet | chain 3 | S 1000 | 24 tickets per block | log /tmp/zen-devnet-716
+   h | tickets | payments | credits |   bytes | blow diff | check (s) |       state root
+   1 |      24 |       20 |       2 |    3197 |         1 |      2.74 | f7217dba5b4e06a4
+   2 |      24 |       21 |       2 |    3207 |         1 |      1.93 | dc2ebe1648431bb2
+   3 |      24 |       22 |       5 |    3252 |         1 |      2.39 | 9560fd1b8dbd801d
+   4 |      48 |       23 |       5 |    5786 |         2 |      3.96 | c0233b4f63f86ca7
+   5 |      24 |       24 |       5 |    3276 |         2 |      1.90 | 4a8e84f68ff98c71
+   6 |      24 |       25 |       6 |    3295 |         2 |      2.05 | 0ec7dbb8a946f19b
+   7 |      24 |       26 |       4 |    3296 |         2 |      1.84 | 59ef5fc0c7687d85
+   8 |      24 |       20 |       6 |    3229 |         2 |      1.90 | 31e867043cdb0961
+   9 |      48 |       21 |       4 |    5749 |         3 |      3.90 | c2b9fa5239ba7f8d
+  10 |      24 |       22 |       5 |    3251 |         3 |      1.83 | aa7bf195e9ad57f6
+  11 |      24 |       23 |       5 |    3260 |         3 |      2.12 | 5a574ed20fcc2139
+  12 |      24 |       24 |       5 |    3277 |         3 |      2.23 | 5789b27053418d78
+RESULT 12 blocks in 82.9s | tip dc2dd80c64bc26f3 | supply exact: true (genesis 12000000000 + issued 600000000)
+RESULT restart from the log: height 12 tip dc2dd80c64bc26f3 identical state | 28.0s to validate 12 blocks again

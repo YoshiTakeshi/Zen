@@ -1,0 +1,6 @@
+target/
+target-*/
+*.pk
+*.r1cs
+__pycache__/
+.DS_Store

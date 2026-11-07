@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Zen node</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<a class="skip" href="#view">Skip to content</a>
+<header class="top">
+  <a class="mark" href="#/" aria-label="Zen node, home"><span class="word">zen</span><span id="chain-chip" class="chip"></span></a>
+  <form id="search" role="search">
+    <label class="sr" for="q">Search the chain</label>
+    <input id="q" type="search" placeholder="Height, hash or zen1 address" autocomplete="off" spellcheck="false">
+    <button type="submit">Search</button>
+  </form>
+</header>
+<nav id="chains" class="chains" aria-label="The three chains" hidden></nav>
+<p id="alert" role="alert" hidden></p>
+<main id="view" tabindex="-1"></main>
+<footer class="foot">
+  <p>This page is served by your node and shows public chain data only. Amounts are in grams of metal, counted in nanograms.</p>
+  <p><a href="/api">API</a></p>
+</footer>
+<script src="/app.js"></script>
+</body>
+</html>

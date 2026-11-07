@@ -1,0 +1,8 @@
+groth16 + snarkpack (BLS12-381) + Jubjub signatures | payments per leaf 16 | leaves 8
+setup (per-circuit, insecure test ceremony) 224.5s | peak 1912 MB
+RESULT leaf: prove 33.48s (avg of 8) | proof 192 bytes | verify 1.0 ms (true) | peak 1912 MB
+aggregation SRS (universal, insecure test setup) 0.0s
+RESULT aggregate of 8 leaves: prove 0.06s | proof 10.9 KB | verify 18 ms (true , roots chain true) | peak 1912 MB
+RESULT aggregate of 64 proofs: prove 0.38s | proof 19.6 KB | verify 25 ms (true) | peak 1912 MB
+RESULT aggregate of 256 proofs: prove 1.50s | proof 25.5 KB | verify 50 ms (true) | peak 1912 MB
+RESULT aggregate of 1024 proofs: prove 5.57s | proof 31.3 KB | verify 40 ms (true) | peak 1912 MB

@@ -1,0 +1,10 @@
+maximal push: S moved +15.8% in 7 days, +37.5% in 30 days
+test reading::tests::hard_bound_of_a_maximal_push ... ok
+pushed S 11586 from 10002 in 7 days
+test reading::tests::push_is_bounded ... ok
+test reading::tests::follows_slowly_within_the_band ... ok
+test reading::tests::reads_the_ratio ... ok
+--
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 21 filtered out; finished in 0.00s
+
+S per block: [996, 996, 1092]; S now 1092 anchor 1003 days read 1

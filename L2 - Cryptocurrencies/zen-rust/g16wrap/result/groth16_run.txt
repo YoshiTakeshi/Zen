@@ -1,0 +1,10 @@
+RESULT test engine: satisfied=true | 15.0s | peak 1111 MB
+RESULT test engine: satisfied=true | 17.3s | peak 1153 MB
+RESULT compile: 4203106 constraints | 15 public | 6117 secret | 31.4s | peak 3137 MB
+RESULT setup: 1373.4s | proving key 2007 MB | verifying key 944 bytes | peak 5963 MB
+RESULT prove: 111.6s | proof 196 bytes (compressed points) | peak 5961 MB
+RESULT verify: ok=true | 2.77 ms | public inputs 3
+RESULT prove: 107.8s | proof 196 bytes (compressed points) | peak 5954 MB
+RESULT verify: ok=true | 3.85 ms | public inputs 3
+cross-check: block A proof with block B public inputs
+RESULT verify: ok=false | 1.77 ms | public inputs 3

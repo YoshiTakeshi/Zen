@@ -1,0 +1,6 @@
+RESULT stamp: 128 payments | fee total 65368 | proof 143.0 KB (compressed 131.7 KB)
+RESULT shrink 1 (standard, 3x28+16): circuit 2^13 | prove 2.01s | proof 129.8 KB (compressed 119.3 KB)
+RESULT shrink 2 (rate_bits 6, 14 queries, pow 16): circuit 2^12 | prove 6.09s | proof 73.5 KB (compressed 69.7 KB) | verify 3.0 ms | peak 1557 MB
+RESULT shrink 2 (rate_bits 7, 12 queries, pow 16): circuit 2^12 | prove 11.96s | proof 66.2 KB (compressed 63.2 KB) | verify 2.5 ms | peak 2376 MB
+RESULT shrink 2 (rate_bits 8, 10 queries, pow 20): circuit 2^12 | prove 24.72s | proof 58.2 KB (compressed 56.6 KB) | verify 2.3 ms | peak 4008 MB
+RESULT stamp root matches the account tree: true | peak 4008 MB

@@ -1,0 +1,1 @@
+`main.go`: a real zero-knowledge "leaf strike" for Proof of Minting (Go, gnark, Groth16 on BN254). One proof certifies K signed transfers, the fee limits and the move of the state root. First prototype; later work is in `../zen-rust` and `../jen0-go-devnet`. No go.mod: create one with `go mod init` and `go mod tidy`.

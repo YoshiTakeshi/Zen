@@ -1,0 +1,20 @@
+address zen1e9051894d2e6f73d32d9b36e47878abb2b7cf1e3be9cd45113a3285ee2a9f057b4d24cce
+== balances at height 0
+zen167943f7ddd8e01305a78a7bd4606918600b46deba43db1ac9a711fdfa64f83c7a9788b83 | balance 1000000000 base units | nonce 0 (next 0) | node height 0
+zen1e9051894d2e6f73d32d9b36e47878abb2b7cf1e3be9cd45113a3285ee2a9f057b4d24cce | no account yet | node height 0
+== w5 pays the new wallet twice
+sent 40000000 base units (fee 400001) | nonce 0 | payment id 2e25cbbe035d8e1f4d7ef34058c8455679624de7f4ede3669b8277f00022b855
+sent 25000000 base units (fee 250001) | nonce 1 | payment id 7ae4fea2e64e7e5acf35d88a4a0ff6d92b04ca9d1cea71c8a1ccbbcceaf75049
+== a mistyped address and a payment that overspends
+Error: an address has 72 characters after zen1
+Error: the node refused the payment: balance 1000000000 does not cover 5115650003
+== mine one block through Stratum
+RESULT miner: 1 blocks accepted in 3.5s
+== after the block
+zen167943f7ddd8e01305a78a7bd4606918600b46deba43db1ac9a711fdfa64f83c7a9788b83 | balance 934349998 base units | nonce 2 (next 2) | node height 1
+zen1e9051894d2e6f73d32d9b36e47878abb2b7cf1e3be9cd45113a3285ee2a9f057b4d24cce | balance 65000000 base units | nonce 1048576 (next 1048576) | node height 1
+== the new wallet pays w6
+sent 10000000 base units (fee 100001) | nonce 1048576 | payment id a9b6b99df0526b618a7004c03c1c3f429e847148aec54608b5f0237d2abfb08c
+RESULT miner: 1 blocks accepted in 3.8s
+zen1e9051894d2e6f73d32d9b36e47878abb2b7cf1e3be9cd45113a3285ee2a9f057b4d24cce | balance 54899999 base units | nonce 1048577 (next 1048577) | node height 2
+zen145f1f9bc4e245d2ca2c4c690608617e69821489ba36d8430e25f748a4247d8c15faf2324 | balance 1010000000 base units | nonce 0 (next 0) | node height 2

@@ -1,0 +1,16 @@
+RESULT test engine: satisfied=true | 13.5s | peak 1144 MB
+RESULT test engine: satisfied=true | 13.6s | peak 1154 MB
+RESULT test engine: satisfied=true | 13.4s | peak 1177 MB
+RESULT compile: 4203150 constraints | 17 public | 6117 secret | 28.7s | peak 3175 MB
+RESULT setup: 1226.1s | proving key 2007 MB | verifying key 1008 bytes | peak 5967 MB
+== v2A
+RESULT prove: 93.8s | proof 196 bytes (compressed points) | peak 5962 MB
+RESULT verify: ok=true | 3.44 ms | public inputs 3
+== v2B
+RESULT prove: 95.4s | proof 196 bytes (compressed points) | peak 5961 MB
+RESULT verify: ok=true | 2.87 ms | public inputs 3
+== v2C
+RESULT prove: 96.6s | proof 196 bytes (compressed points) | peak 5961 MB
+RESULT verify: ok=true | 2.53 ms | public inputs 3
+== cross: block C proof with block A public values
+RESULT verify: ok=false | 3.35 ms | public inputs 3

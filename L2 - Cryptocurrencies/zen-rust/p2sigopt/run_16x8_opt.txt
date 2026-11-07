@@ -1,0 +1,8 @@
+plonky2 (optimised EcGFp5 gate) | payments per leaf 16 | leaves 8 | signatures true | threads 2
+leaf circuit: degree 2^14 (16384 gates) | build 2.2s | peak 362 MB
+RESULT leaf: prove 4.05s (avg of 8) | proof 142.8 KB | verify 5.8 ms | peak 581 MB
+RESULT merge level 1: circuit 2^14 | build 2.3s | prove 4.05s per merge (4 merges) | proof 143.0 KB | verify 6.0 ms | peak 758 MB
+RESULT merge level 2: circuit 2^14 | build 2.3s | prove 4.02s per merge (2 merges) | proof 143.0 KB | verify 5.3 ms | peak 910 MB
+RESULT merge level 3: circuit 2^14 | build 2.2s | prove 3.92s per merge (1 merges) | proof 143.0 KB | verify 6.8 ms | peak 1058 MB
+RESULT stamp: 128 payments | fee total 65368 | proof 143.0 KB (compressed 132.1 KB)
+RESULT stamp root matches the account tree: true | peak 1058 MB

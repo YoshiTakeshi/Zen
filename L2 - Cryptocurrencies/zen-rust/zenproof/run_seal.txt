@@ -1,0 +1,11 @@
+seal bench | Bitcoin 80-byte header, SHA256d | Stratum v1 job:
+{"id":null,"method":"mining.notify","params":["zen1","37391581f34de3f2fd0617c92803558e989567099ebc222316e7b32a48bcf9f4","5a656e5365616c3103650000000000000008","1111111111111111111111111111111111111111111111111111111111111111",["fcada1c9cc699bbcb6602ff968773ce0f542b105ba8765cceb69d50fb9114b13"],"20000000","1f00ffff","6ab13b80",true]}
+RESULT Stratum miner: share after 46254 hashes, 0.05s (0.86 MH/s on one CPU core) | extranonce2 00000000 | nonce 46253
+RESULT node: seal valid | block hash 000053dfcdce581bc406e9d82d761f18e37878539c8cd6939db28f77179d12b8 | miner's part to the pool's address
+RESULT attack seal reused for a changed block: rejected (commitment does not match the minted block)
+RESULT attack miner address swapped after solving: rejected (commitment does not match the minted block)
+RESULT attack seal shown to Ken (other chain): rejected (coinbase for another chain or height)
+RESULT attack version outside BIP 320 bits: rejected (version outside the rollable bits)
+RESULT attack easier bits than the chain asks: rejected (wrong difficulty bits)
+RESULT attack wrong nonce: rejected (hash above the target)
+RESULT difficulty 1 -> bits 1d00ffff, difficulty 1,000,000 -> bits 1a10c6e6

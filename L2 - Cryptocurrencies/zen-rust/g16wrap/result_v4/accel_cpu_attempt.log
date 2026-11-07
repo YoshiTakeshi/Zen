@@ -1,0 +1,20 @@
+[INFO] ICICLE backend loaded from $ICICLE_BACKEND_INSTALL_DIR=/home/claude/icicle-install/lib/backend
+[90m20:43:32[0m DBG ICICLE devices detected [36mnbDev=[0m1
+[90m20:43:32[0m DBG ICICLE device created [36mid=[0m0 [36mtype=[0mCPU
+[90m20:43:32[0m DBG precomputing proving key in GPU [36macceleration=[0micicle [36mbackend=[0mgroth16 [36mcurve=[0mbn254 [36mnbConstraints=[0m4203150
+panic: ICICLE device warmup error: EIcicleError.ApiNotImplemented
+
+goroutine 40 [running]:
+github.com/consensys/gnark/backend/accelerated/icicle/groth16.warmUpDevice.func1.1({0xabb8f3fe190?, 0xabbc17c2000?, 0xabb8f111fa0?})
+	/root/go/pkg/mod/github.com/consensys/gnark@v0.16.4/backend/accelerated/icicle/groth16/groth16_icicle.go:67 +0xba
+github.com/ingonyama-zk/icicle-gnark/v3/wrappers/golang/runtime.RunOnDevice.func1(0xabb8f3fe190)
+	/root/go/pkg/mod/github.com/ingonyama-zk/icicle-gnark/v3@v3.2.2/wrappers/golang/runtime/runtime.go:99 +0x90
+created by github.com/ingonyama-zk/icicle-gnark/v3/wrappers/golang/runtime.RunOnDevice in goroutine 1
+	/root/go/pkg/mod/github.com/ingonyama-zk/icicle-gnark/v3@v3.2.2/wrappers/golang/runtime/runtime.go:94 +0xd9
+panic: invalid argument
+
+goroutine 1 [running]:
+main.must(...)
+	/home/claude/g16wrap/gpv16/cmd/zenwrap/main.go:91
+main.main()
+	/home/claude/g16wrap/gpv16/cmd/zenwrap/main.go:161 +0x28b4

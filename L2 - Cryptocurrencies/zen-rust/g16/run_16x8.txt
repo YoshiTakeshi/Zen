@@ -1,0 +1,8 @@
+groth16 + snarkpack (BLS12-381) | payments per leaf 16 | leaves 8
+setup (per-circuit, insecure test ceremony) 221.2s | peak 1727 MB
+RESULT leaf: prove 35.52s (avg of 8) | proof 192 bytes | verify 1.8 ms (true) | peak 1727 MB
+aggregation SRS (universal, insecure test setup) 0.1s
+RESULT aggregate of 8 leaves: prove 0.07s | proof 10.9 KB | verify 21 ms (true , roots chain true) | peak 1727 MB
+RESULT aggregate of 64 proofs: prove 0.55s | proof 19.6 KB | verify 45 ms (true) | peak 1727 MB
+RESULT aggregate of 256 proofs: prove 1.94s | proof 25.5 KB | verify 54 ms (true) | peak 1727 MB
+RESULT aggregate of 1024 proofs: prove 7.28s | proof 31.3 KB | verify 52 ms (true) | peak 1727 MB

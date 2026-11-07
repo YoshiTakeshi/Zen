@@ -1,0 +1,31 @@
+
+Honest Sen share 30%: worst move of 1 JEN in Sen during a 7-day attack (both directions)
+defence              att 2%     att 5%    att 10%    att 20%    att 40%
+Jen-0.11               NaN%       NaN%       NaN%       NaN%       NaN%
+capped value           NaN%       NaN%       NaN%       NaN%       NaN%
+anchor + band           65%        65%        65%        65%        65%
+speed by share         NaN%       NaN%       NaN%       NaN%       NaN%
+all three               63%        65%        65%        65%        65%
+
+Honest Sen share 5%: worst move of 1 JEN in Sen during a 7-day attack (both directions)
+defence              att 2%     att 5%    att 10%    att 20%    att 40%
+Jen-0.11               NaN%       NaN%       NaN%       NaN%       NaN%
+capped value           NaN%       NaN%       NaN%       NaN%       NaN%
+anchor + band           81%        81%        81%        81%        81%
+speed by share         NaN%       NaN%       NaN%       NaN%       NaN%
+all three               52%        77%        77%        77%        77%
+
+Genuine change: the Sen worth 1.5x, blocks until 1 JEN is within 5% of 1 Sen (576 blocks a day)
+defence             share 2%    share 5%   share 10%   share 30%   share 50%
+Jen-0.11                  43          25          25          49          37
+capped value              45          26          26          49          36
+anchor + band           1134        1648        2285        2547        2678
+speed by share           740         124          90          51          37
+all three               1463        1852        2437        2586        2687
+
+Attack cost (fees lost, % of a day's honest payment volume), honest share 30%, all three defences:
+  attacker 2%: down (edge) moves 63.4% for 0.07%/day; up (edge) moves 42.3% for 0.06%/day
+  attacker 5%: down (edge) moves 63.4% for 0.21%/day; up (edge) moves 64.6% for 0.17%/day
+  attacker 10%: down (edge) moves 63.4% for 0.59%/day; up (edge) moves 64.6% for 0.46%/day
+  attacker 20%: down (edge) moves 63.4% for 1.62%/day; up (edge) moves 64.5% for 1.33%/day
+  attacker 40%: down (edge) moves 63.4% for 4.85%/day; up (edge) moves 64.5% for 4.42%/day

@@ -1,0 +1,34 @@
+# docker compose -f docker-compose.split.yml up -d     Yen, Ken and Jen as THREE containers that follow each other over the network.
+# (On three machines: run one service on each, put the network files (net.conf per chain, minters) in each /data/net, and point ZEN_FOLLOW_* at the
+# other machines' addresses.) Explorer ports: Yen 18460, Ken 18461, Jen 18462.
+x-zen: &zen
+  image: ${ZEN_IMAGE:-ghcr.io/OWNER/zen:latest}
+  build: .
+  restart: unless-stopped
+  environment: &env
+    ZEN_INIT: "1"
+    ZEN_AUTOMINE: "1"
+    ZEN_BLOCK_SECS: "${ZEN_BLOCK_SECS:-20}"
+    ZEN_FOLLOW_YEN: "yen:18440"
+    ZEN_FOLLOW_KEN: "ken:18441"
+    ZEN_FOLLOW_JEN: "jen:18442"
+  volumes:
+    - net:/data/net
+services:
+  yen:
+    <<: *zen
+    command: ["chain", "yen"]
+    environment: { <<: *env, ZEN_HEALTH_IDX: "0" }
+    ports: ["127.0.0.1:18440:18440", "127.0.0.1:18450:18450", "127.0.0.1:18460:18460"]
+  ken:
+    <<: *zen
+    command: ["chain", "ken"]
+    environment: { <<: *env, ZEN_HEALTH_IDX: "1" }
+    ports: ["127.0.0.1:18441:18441", "127.0.0.1:18451:18451", "127.0.0.1:18461:18461"]
+  jen:
+    <<: *zen
+    command: ["chain", "jen"]
+    environment: { <<: *env, ZEN_HEALTH_IDX: "2" }
+    ports: ["127.0.0.1:18442:18442", "127.0.0.1:18452:18452", "127.0.0.1:18462:18462"]
+volumes:
+  net:

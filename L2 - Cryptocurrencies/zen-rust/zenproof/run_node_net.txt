@@ -1,0 +1,16 @@
+== node A (pool + Stratum), node B connected to A, one Stratum-only CPU miner on A (4 blocks)
+-- node A
+zen node stage 2 | p2p 127.0.0.1:18444 | stratum 127.0.0.1:13333 | height 0
+height 0 | tip ed56f93b10284517 | peers 0 | shares accepted 0 rejected 0
+height 1 | tip 026794f535a7b581 | peers 1 | shares accepted 1 rejected 0
+height 2 | tip 6341b2653390c924 | peers 1 | shares accepted 2 rejected 0
+height 3 | tip d2e27ddcdeef1b57 | peers 1 | shares accepted 3 rejected 0
+height 4 | tip 7d76d4d665ee2d45 | peers 1 | shares accepted 4 rejected 0
+-- node B
+zen node stage 2 | p2p 127.0.0.1:18445 | stratum 127.0.0.1:13334 | height 0
+height 0 | tip ed56f93b10284517 | peers 1 | shares accepted 0 rejected 0
+height 1 | tip 026794f535a7b581 | peers 1 | shares accepted 0 rejected 0
+height 2 | tip 6341b2653390c924 | peers 1 | shares accepted 0 rejected 0
+height 3 | tip d2e27ddcdeef1b57 | peers 1 | shares accepted 0 rejected 0
+height 4 | tip 7d76d4d665ee2d45 | peers 1 | shares accepted 0 rejected 0
+-- miner: RESULT miner: 4 blocks accepted in 14.6s

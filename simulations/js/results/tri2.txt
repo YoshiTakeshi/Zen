@@ -1,0 +1,11 @@
+Three chains, exchange trades in the weight. Largest move of each chain's S away from its true value in a 30-day attack (Jen / Ken / Yen).
+scenario                                                             payments only       median of three
+no attack                                                             4% / 3% / 3%          3% / 3% / 4%
+payment attack on Jen                                                26% / 3% / 3%          4% / 3% / 4%
+exchange attack on Jen-Ken, 30% of coin-priced volume, 13% off        4% / 3% / 3%          3% / 3% / 4%
+exchange attack on Jen-Ken, 60% of volume, 13% off                    4% / 3% / 3%          4% / 2% / 3%
+payment on Jen + exchange Jen-Ken 60%                                26% / 3% / 3%         14% / 3% / 4%
+payment on Jen + exchange Jen-Ken and Jen-Yen 60%                    26% / 3% / 3%         14% / 3% / 4%
+payment attack on Jen and Ken together, same push                   26% / 27% / 3%          4% / 5% / 4%
+
+Genuine change (copper +50%): Jen's S within 5% after 32 days with payments only, 40 days with the median of three.

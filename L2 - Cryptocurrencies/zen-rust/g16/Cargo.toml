@@ -1,0 +1,20 @@
+[package]
+name = "g16"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.104"
+bellpepper-core = "0.2"
+bellperson = "0.27.0"
+blstrs = "0.7"
+ff = "0.13"
+generic-array = "0.14"
+neptune = { version = "11", default-features = false }
+rand = "0.8"
+rand_chacha = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

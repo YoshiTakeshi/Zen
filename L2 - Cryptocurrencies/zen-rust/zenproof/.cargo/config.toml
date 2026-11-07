@@ -1,0 +1,4 @@
+# The BN254 Poseidon of the Groth16 layer spends nearly all of its time in 254-bit multiplications; ark-ff's assembly (feature "asm" in Cargo.toml)
+# needs these two CPU features on x86-64 (any x86-64 since Intel Broadwell / AMD Zen 1). Other CPUs (Apple Silicon, Raspberry Pi: aarch64) use the portable code.
+[target.'cfg(target_arch = "x86_64")']
+rustflags = ["-C", "target-feature=+bmi2,+adx"]

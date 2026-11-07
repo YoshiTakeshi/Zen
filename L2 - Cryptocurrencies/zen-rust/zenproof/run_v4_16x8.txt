@@ -1,0 +1,18 @@
+zenproof v3 (signature leaves + state leaves) | slots per leaf 16 | leaves 8 | S 1000 | height 100 | threads 2
+RESULT signature leaf circuit: 2^14 rows | build 3.1s
+first pass: state leaf 2^13 | merge 2^13 | 13 gate types in the union
+RESULT circuits: state leaf and merge share one shape, 2^13 rows, 84 public values | build 6.0s
+block: 112 signed payments in 128 slots
+RESULT signature leaves (minters): 8 proved, 5.02s each on average | proof 142.7 KB | peak 900 MB
+RESULT state leaves (builder): 8 proved, 2.70s each on average | 11 credits (payouts), 19 new accounts, 1 closed, 2 skipped ["leaf 0 slot 2 (double spend)", "leaf 0 slot 5 (replay)"] | proof 130.4 KB | peak 900 MB
+RESULT payouts: [5000000, 400000, 400000, 3763953, 13205, 13693, 13306, 13551, 13833, 13449, 1281670] | fee pool 3200000 -> 8126656
+RESULT merges: 7 merge proofs, 2.65s each on average | stamp 110 payments, fee total 10053316 | proof 130.4 KB | peak 900 MB
+RESULT shrink: circuit 2^12 | prove 1.39s | proof 124.3 KB
+RESULT bn254-poseidon layer: circuit 2^12 | prove 83.87s | proof 73.5 KB | peak 1390 MB
+wrote out_v4/
+RESULT block data: 2401 bytes for 121 payments and credits (19 new accounts at +32 B; header 5 B + 40 B per leaf)
+RESULT node replay: root, fee total, count, data hash, S and height match the proof: true | credits match the payouts owed: 11 | fee pool after 8126656
+RESULT node replay with one changed byte: accepted = false
+RESULT node replay with S + 1: accepted = false
+RESULT node replay expecting another miner: accepted = false
+RESULT stamp root matches the account tree: true | peak 1390 MB

@@ -1,0 +1,98 @@
+   Compiling zenproof v0.1.0 (/home/claude/zkbench/zenproof)
+warning: unused import: `Field64`
+  --> src/tx.rs:16:36
+   |
+16 | use plonky2::field::types::{Field, Field64, PrimeField64};
+   |                                    ^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `b2` is never read
+   --> src/blockdata.rs:333:34
+    |
+333 |         assert_eq!(b2.bal, 100); b2.bal = 0;
+    |                                  ^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `h` is never read
+   --> src/seal.rs:145:66
+    |
+145 | ...   if BigUint::from_bytes_le(&sha256d(&hb)) <= target { h.nonce = nonce; return Some((Share { extranonce2: en2b, ntime, nonce, v...
+    |                                                            ^^^^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+
+warning: variable does not need to be mutable
+   --> src/p2p.rs:579:13
+    |
+579 |         let mut mine = |net: &mut dev::Devnet, txs: Vec<crate::tx::SignedPay>| -> Result<crate::node::Block> {
+    |             ----^^^^
+    |             |
+    |             help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `n`
+   --> src/prover.rs:190:9
+    |
+190 |     let n = c.n;
+    |         ^
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: you might have meant to pattern match on the similarly named constant `D`
+    |
+190 -     let n = c.n;
+190 +     let ec::D = c.n;
+    |
+help: if this is intentional, prefix it with an underscore
+    |
+190 |     let _n = c.n;
+    |         +
+
+warning: unused variable: `spend`
+   --> src/main.rs:906:17
+    |
+906 |             let spend = p.amt + p.fee;
+    |                 ^^^^^ help: if this is intentional, prefix it with an underscore: `_spend`
+
+warning: associated function `jen` is never used
+  --> src/reading.rs:83:26
+   |
+83 | impl ReadParams { pub fn jen() -> Self { ReadParams { std_fee_pm: 10, cap_bp: 3, min_obs: 100 } } }
+   | ---------------          ^^^
+   | |
+   | associated function in this implementation
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `get`, `contains`, and `pending_spend` are never used
+  --> src/mempool.rs:36:12
+   |
+33 | impl Mempool {
+   | ------------ methods in this implementation
+...
+36 |     pub fn get(&self, id: &[u8; 32]) -> Option<&SignedPay> { self.txs.get(id).map(|e| &e.tx) }
+   |            ^^^
+37 |     pub fn contains(&self, id: &[u8; 32]) -> bool { self.txs.contains_key(id) }
+   |            ^^^^^^^^
+...
+43 |     pub fn pending_spend(&self, addr: &[F; 4]) -> u128 {
+   |            ^^^^^^^^^^^^^
+
+warning: `zenproof` (bin "zenproof" test) generated 8 warnings (run `cargo fix --bin "zenproof" -p zenproof --tests` to apply 4 suggestions)
+    Finished `release` profile [optimized] target(s) in 57.09s
+     Running unittests src/main.rs (target/release/deps/zenproof-376c3baa60fe26d6)
+
+running 1 test
+state leaf: 4252 gates before the slots (proof check, day)
+state leaf: slot gates 233
+state leaf: 8043 gates before padding
+test p2p::tests::a_block_with_a_groth16_stamp_is_accepted_by_a_node_with_only_the_verifying_key has been running for over 60 seconds
+block with a Groth16 stamp made in 195.4s
+accepted by a node with only zen.vk in 1.43s (replay and the pairing check)
+test p2p::tests::a_block_with_a_groth16_stamp_is_accepted_by_a_node_with_only_the_verifying_key ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 39 filtered out; finished in 246.39s
+

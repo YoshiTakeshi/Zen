@@ -1,0 +1,12 @@
+mint bench | chain 3 | Argon2id 64 MB, 1 pass, 1 lane | ticket 105 bytes | threads 2
+RESULT per attempt: sign 1.18 ms | Argon2id 84 ms | node check of a ticket: decode + verify 1.65 ms + one Argon2id | peak 68 MB
+RESULT minting: 40 attempts at difficulty 4 -> 10 winning blows in 3.0s (13.28 attempts/s on one core)
+RESULT node: 10 tickets checked, 74 ms each, every one credited to the minter's own account address
+RESULT attack changed nonce: rejected (bad blow signature)
+RESULT attack same ticket on another chain (Ken): rejected (bad blow signature)
+RESULT attack same ticket on another round: rejected (bad blow signature)
+RESULT attack claim someone else's blow (swap in another key): rejected (bad blow signature)
+RESULT attack key with an order-2 part: rejected (point outside the prime-order group)
+RESULT attack payment signature used as a blow: rejected (bad blow signature)
+RESULT attack winning blow at a harder difficulty: rejected (blow above the target)
+RESULT blow difficulty from 1000 for blows/block 100,300,300,300,50,0,100: [1000, 1125, 1265, 1423, 1246, 1091, 1091] | gate now 12049 (work EMA 36147)

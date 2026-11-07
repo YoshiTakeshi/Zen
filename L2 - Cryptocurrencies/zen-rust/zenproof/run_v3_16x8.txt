@@ -1,0 +1,16 @@
+zenproof v3 (signature leaves + state leaves) | slots per leaf 16 | leaves 8 | S 1000 | height 100 | threads 2
+RESULT signature leaf circuit: 2^14 rows | build 3.1s
+first pass: state leaf 2^13 | merge 2^13 | 13 gate types in the union
+RESULT circuits: state leaf and merge share one shape, 2^13 rows, 84 public values | build 6.6s
+block: 128 signed payments in 128 slots
+RESULT signature leaves (minters): 8 proved, 5.98s each on average | proof 142.7 KB | peak 902 MB
+RESULT state leaves (builder): 8 proved, 2.84s each on average | 21 new accounts, 1 closed, 2 skipped ["leaf 0 slot 2 (double spend)", "leaf 0 slot 5 (replay)"] | proof 130.4 KB | peak 902 MB
+RESULT merges: 7 merge proofs, 2.87s each on average | stamp 126 payments, fee total 10063724 | proof 130.4 KB | peak 902 MB
+RESULT shrink: circuit 2^12 | prove 1.47s | proof 124.3 KB
+RESULT bn254-poseidon layer: circuit 2^12 | prove 84.28s | proof 73.5 KB | peak 1388 MB
+wrote out_v3/
+RESULT block data: 2580 bytes for 126 payments (21 new accounts at +32 B; header 5 B + 38 B per leaf)
+RESULT node replay: root, fee total, count, data hash, S and height match the proof: true | prover credits: 8
+RESULT node replay with one changed byte: accepted = false
+RESULT node replay with S + 1: accepted = false
+RESULT stamp root matches the account tree: true | peak 1388 MB

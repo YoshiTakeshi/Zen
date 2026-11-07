@@ -1,0 +1,82 @@
+# Zen testnet on Kubernetes:  kubectl apply -f k8s/zen.yaml
+# One StatefulSet pod runs the three chains (the cross-chain claims read each other's headers in-process), with its own disk.
+# Reach the explorer:  kubectl -n zen port-forward svc/zen 18461:18461   then open http://localhost:18461/
+# (the API answers only to localhost names; for a gateway, add its name to ZEN_API_HOSTS below.)
+apiVersion: v1
+kind: Namespace
+metadata: { name: zen }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: { name: zen-config, namespace: zen }
+data:
+  ZEN_AUTOMINE: "1"
+  ZEN_BLOCK_SECS: "20"
+  ZEN_API_HOSTS: ""            # e.g. "zen.example.com"
+---
+apiVersion: v1
+kind: Service
+metadata: { name: zen, namespace: zen }
+spec:
+  clusterIP: None              # headless: stable names for peers (zen-0.zen.zen.svc)
+  selector: { app: zen }
+  ports:
+    - { name: p2p-yen, port: 18440 }
+    - { name: p2p-ken, port: 18441 }
+    - { name: p2p-jen, port: 18442 }
+    - { name: stratum-yen, port: 18450 }
+    - { name: stratum-ken, port: 18451 }
+    - { name: stratum-jen, port: 18452 }
+    - { name: api-yen, port: 18460 }
+    - { name: api-ken, port: 18461 }
+    - { name: api-jen, port: 18462 }
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: { name: zen, namespace: zen }
+spec:
+  serviceName: zen
+  replicas: 1
+  selector: { matchLabels: { app: zen } }
+  template:
+    metadata: { labels: { app: zen } }
+    spec:
+      securityContext: { runAsUser: 10001, runAsNonRoot: true, fsGroup: 10001 }
+      containers:
+        - name: zen
+          image: ghcr.io/OWNER/zen:latest
+          imagePullPolicy: IfNotPresent
+          envFrom: [{ configMapRef: { name: zen-config } }]
+          ports:
+            - { containerPort: 18440 } 
+            - { containerPort: 18441 }
+            - { containerPort: 18442 }
+            - { containerPort: 18450 }
+            - { containerPort: 18451 }
+            - { containerPort: 18452 }
+            - { containerPort: 18460 }
+            - { containerPort: 18461 }
+            - { containerPort: 18462 }
+          readinessProbe:
+            exec: { command: ["/usr/local/bin/zen-entrypoint", "healthcheck"] }
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            exec: { command: ["/usr/local/bin/zen-entrypoint", "healthcheck"] }
+            initialDelaySeconds: 90
+            periodSeconds: 30
+            failureThreshold: 5
+          resources:
+            requests: { cpu: 250m, memory: 512Mi }
+            limits: { memory: 2Gi }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+          volumeMounts:
+            - { name: data, mountPath: /data }
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - { name: tmp, emptyDir: {} }
+  volumeClaimTemplates:
+    - metadata: { name: data }
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources: { requests: { storage: 10Gi } }

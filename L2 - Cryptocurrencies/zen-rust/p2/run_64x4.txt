@@ -1,0 +1,7 @@
+plonky2 | payments per leaf 64 | leaves 4 | threads 2
+leaf circuit: degree 2^14 (16384 gates) | build 3.1s | peak 356 MB
+RESULT leaf: prove 5.21s (avg of 4) | proof 142.8 KB | verify 5.8 ms | peak 579 MB
+RESULT merge level 1: circuit 2^14 | build 2.3s | prove 4.75s per merge (2 merges) | proof 143.0 KB | verify 5.6 ms | peak 750 MB
+RESULT merge level 2: circuit 2^14 | build 2.5s | prove 4.91s per merge (1 merges) | proof 143.0 KB | verify 6.1 ms | peak 901 MB
+RESULT stamp: 256 payments | fee total 131364 | proof 143.0 KB (compressed 130.1 KB)
+RESULT stamp root matches the account tree: true | peak 901 MB

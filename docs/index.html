@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zen Monetary System</title>
+<meta name="description" content="Zen: gold, silver and copper coins, three electronic chains, one 196-byte proof per block. Open source test network.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: one left-aligned column of 1040px. Hero = headline + three block rhythms (Yen 15 min, Ken 5, Jen 2.5).
+   Everything below is quiet: status board, ways to help, support. Metals appear only as the three chain colors. */
+:root{
+  --bg:#eef0ef; --surface:#f8f9f8; --ink:#14191c; --ink2:#4f5b64; --rule:#c9d0d3;
+  --yen:#a97c12; --ken:#6c7a86; --jen:#b05a33; --focus:#1d5fa8; --ok:#2b7a4b;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1315; --surface:#161b1e; --ink:#e8ecee; --ink2:#a3afb7; --rule:#2c3438;
+  --yen:#dcb04a; --ken:#aab6c0; --jen:#df8a62; --focus:#7db3ee; --ok:#6cc48a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1315; --surface:#161b1e; --ink:#e8ecee; --ink2:#a3afb7; --rule:#2c3438;
+  --yen:#dcb04a; --ken:#aab6c0; --jen:#df8a62; --focus:#7db3ee; --ok:#6cc48a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:.005em}
+h1{font-size:clamp(2.9rem,8.2vw,6rem)}
+h2{font-size:clamp(2rem,4.6vw,3rem);margin-bottom:18px}
+h3{font-size:1.5rem;font-weight:600;letter-spacing:.02em}
+p{margin:0 0 1em;max-width:62ch}
+.muted{color:var(--ink2)}
+.small{font-size:.9rem}
+
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:20px;border-bottom:1px solid var(--rule)}
+.brand{font:800 1.9rem/1 var(--display);letter-spacing:.04em;text-decoration:none}
+nav{display:flex;gap:22px;flex-wrap:wrap;font-size:.95rem}
+nav a{text-decoration:none;color:var(--ink2)}
+nav a:hover{color:var(--ink);text-decoration:underline}
+
+.hero{padding-block:clamp(36px,7vw,84px) 40px;display:grid;gap:34px}
+.hero p.lede{font-size:1.25rem;max-width:56ch}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;font:600 1rem/1 var(--body);padding:15px 22px;border:2px solid var(--ink);text-decoration:none;cursor:pointer;background:transparent;color:var(--ink);border-radius:2px}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.btn:hover{transform:translateY(-1px)}
+
+/* the three rhythms */
+.rhythm{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding-block:18px}
+.rhythm .cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.row{display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:14px;align-items:center;padding-block:6px}
+.row .nm{font:600 1.25rem/1 var(--display);letter-spacing:.03em}
+.row .nm small{display:block;font:400 .85rem/1.3 var(--body);color:var(--ink2);letter-spacing:0;margin-top:3px}
+svg.track{width:100%;height:30px;display:block;overflow:visible}
+.base{stroke:var(--rule);stroke-width:2}
+.tick{stroke-width:5;stroke-linecap:butt}
+.tick.pulse{animation:pulse .9s ease-out}
+@keyframes pulse{0%{stroke-width:14}100%{stroke-width:5}}
+.sweep{stroke:var(--ink);stroke-width:1.5;opacity:.55}
+
+section{padding-block:clamp(40px,6vw,72px);border-top:1px solid var(--rule)}
+.hero+section{border-top:0}
+
+/* coins */
+.coins{display:grid;gap:0;margin-top:8px}
+.coin{display:grid;grid-template-columns:64px minmax(0,1fr) minmax(0,1fr);gap:18px 24px;align-items:center;padding-block:18px;border-top:1px solid var(--rule)}
+.coin:last-child{border-bottom:1px solid var(--rule)}
+.disc{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:800 1.25rem/1 var(--display);color:var(--bg);box-shadow:inset 0 0 0 4px var(--bg),inset 0 0 0 6px currentColor}
+.disc span{color:var(--bg)}
+.coin .l{min-width:0}
+.coin .l b,.coin .r b{font:600 1.5rem/1.1 var(--display);letter-spacing:.02em;display:block}
+.coin .r{min-width:0}
+.eq{color:var(--ink2);font-size:.95rem}
+
+/* status */
+.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px;margin-top:10px}
+.board ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.board li{padding-left:26px;position:relative}
+.board li::before{content:"";position:absolute;left:0;top:.62em;width:12px;height:12px}
+.done li::before{background:var(--ok)}
+.todo li::before{border:2px solid var(--ink2)}
+.board h3{margin-bottom:12px}
+.notice{margin-top:34px;border:2px solid var(--ink);padding:16px 20px;max-width:70ch}
+.notice b{font-family:var(--display);font-size:1.15rem;letter-spacing:.03em;font-weight:600}
+
+/* help */
+.help{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.help article{padding-block:18px;border-top:1px solid var(--rule)}
+.help article p{margin:6px 0 0}
+.chan{display:flex;gap:12px 22px;flex-wrap:wrap;margin-top:26px}
+.chan a{font-weight:600}
+
+.video{position:relative;aspect-ratio:16/9;max-width:100%;border:1px solid var(--rule);background:var(--surface)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* support */
+.addr{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin-top:6px}
+.addr code{flex:1 1 280px;min-width:0;word-break:break-all;background:var(--surface);border:1px solid var(--rule);padding:12px 14px;font:.92rem/1.4 ui-monospace,Menlo,Consolas,monospace}
+.uses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:26px 0}
+.uses div{border-top:2px solid var(--ink);padding-top:10px}
+.uses b{font:600 1.35rem/1.1 var(--display);letter-spacing:.02em;display:block;margin-bottom:4px}
+footer{border-top:1px solid var(--rule);padding-block:30px 60px;color:var(--ink2);font-size:.92rem}
+footer p{max-width:80ch}
+
+@media (max-width:760px){
+  .board,.help{grid-template-columns:minmax(0,1fr);gap:28px}
+  .uses{grid-template-columns:minmax(0,1fr)}
+  .coin{grid-template-columns:56px minmax(0,1fr)}
+  .coin .r{grid-column:2}
+  .row{grid-template-columns:minmax(0,1fr)}
+  body{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){.tick.pulse{animation:none}.btn:hover{transform:none}}
+</style>
+</head><body>
+
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="#top">Zen</a>
+  <nav aria-label="Sections"><a href="#series">Watch</a><a href="#system">The system</a><a href="#status">Status</a><a href="#help">Help build</a><a href="#support">Support</a><a href="https://github.com/YoshiTakeshi/Zen" target="_blank" rel="noopener">Code</a></nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <h1>Money tied to metal, proved in 196 bytes.</h1>
+  <p class="lede">Zen is an open-source monetary system: three physical coins of gold, silver and copper, and three electronic coins on three public chains. The metal coins are the reference. Every block of payments is checked by one small proof.</p>
+  <div class="cta">
+    <a class="btn solid" id="giveth" href="#support">Support the work</a>
+    <a class="btn" href="#help">Help build it</a>
+  </div>
+
+  <div class="rhythm" aria-label="Average blocks found in fifteen minutes on each chain">
+    <div class="cap"><span class="small muted">Blocks in one 15-minute window, shown sped up. Average: 1, 3 and 6.</span><span class="small muted" id="clock">0 / 15 min</span></div>
+    <div class="row"><div class="nm" style="color:var(--yen)">Golden Yen<small>one block every 15 min</small></div>
+      <svg class="track" viewBox="0 0 1000 30" preserveAspectRatio="none" aria-hidden="true" data-ticks="0.62" data-color="var(--yen)"></svg></div>
+    <div class="row"><div class="nm" style="color:var(--ken)">Silver Ken<small>one block every 5 min</small></div>
+      <svg class="track" viewBox="0 0 1000 30" preserveAspectRatio="none" aria-hidden="true" data-ticks="0.17,0.5,0.83" data-color="var(--ken)"></svg></div>
+    <div class="row"><div class="nm" style="color:var(--jen)">Bronze Jen<small>one block every 2.5 min</small></div>
+      <svg class="track" viewBox="0 0 1000 30" preserveAspectRatio="none" aria-hidden="true" data-ticks="0.07,0.24,0.42,0.58,0.75,0.92" data-color="var(--jen)"></svg></div>
+  </div>
+</div>
+
+<section id="series">
+  <h2>Watch the series</h2>
+  <p>The video series explains Zen from the first idea to the electronic coins. Start with this video and pass it on to anyone who might want to help.</p>
+  <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/c3Mrpw75twc" title="Zen video series" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <p class="small muted" style="margin-top:12px"><a href="https://www.youtube.com/watch?v=c3Mrpw75twc" target="_blank" rel="noopener">Open it on YouTube</a></p>
+</section>
+
+<section id="system">
+  <h2>Six coins, one reference</h2>
+  <p>Each physical coin is a small piece of metal anyone can weigh. Each electronic coin lives on its own chain. The aim is one electronic coin for one physical coin, with no custodian and no price feed in between.</p>
+  <div class="coins" role="list">
+    <div class="coin" role="listitem"><div class="disc" style="background:var(--yen);color:var(--yen)"><span>4 g</span></div>
+      <div class="l"><b style="color:var(--yen)">Ren</b>4 g of gold. Savings and large settlements.</div>
+      <div class="r"><b>Golden Yen</b><span class="eq">1 Yen = 1 Ren, the aim. Blocks every 15 minutes, limited supply.</span></div></div>
+    <div class="coin" role="listitem"><div class="disc" style="background:var(--ken);color:var(--ken)"><span>3 g</span></div>
+      <div class="l"><b style="color:var(--ken)">Ten</b>3 g of silver. Salaries and trade.</div>
+      <div class="r"><b>Silver Ken</b><span class="eq">1 Ken = 1 Ten, the aim. Blocks every 5 minutes.</span></div></div>
+    <div class="coin" role="listitem"><div class="disc" style="background:var(--jen);color:var(--jen)"><span>2 g</span></div>
+      <div class="l"><b style="color:var(--jen)">Sen</b>2 g of copper. Everyday purchases and small change.</div>
+      <div class="r"><b>Bronze Jen</b><span class="eq">1 Jen = 1 Sen, the aim. Blocks every 2.5 minutes. Launches first.</span></div></div>
+  </div>
+  <p style="margin-top:26px">The designs and files for the physical coins are in the <a href="https://github.com/YoshiTakeshi/Zen/tree/main/L1%20-%20Physical%20Coins" target="_blank" rel="noopener">physical coins folder</a> of the repository. Each block is proved correct by a single proof of 196 bytes, so a node that checks only the proof reaches the same answer as one that replays every payment. Amounts are counted in base twelve, which divides evenly by 2, 3, 4 and 6.</p>
+</section>
+
+<section id="status">
+  <h2>Where the work stands</h2>
+  <div class="board">
+    <div class="done"><h3>Built and tested</h3>
+      <ul>
+        <li>A Rust node, wallet and three-chain test network that run on one laptop, with a wallet page in the browser.</li>
+        <li>Payments, payment channels, channel factories, vaults, orders and auctions.</li>
+        <li>One 196-byte proof per block that covers payments and every one of these operations. A node checks it in a few milliseconds.</li>
+        <li>583 rule-breaking tests that try to make the proof circuits accept something the node refuses. None succeeds, and a deliberately removed rule was caught.</li>
+        <li>137 automated tests pass. The code was written with AI assistance and is tested in the open.</li>
+      </ul></div>
+    <div class="todo"><h3>Needed next</h3>
+      <ul>
+        <li>A public multi-party ceremony to create the proof key. Today's key was made on one machine and is for testing only.</li>
+        <li>An independent audit of the circuits and the consensus rules.</li>
+        <li>Fuzzing of every message decoder.</li>
+        <li>A public test network that others can join.</li>
+        <li>Speed tests of the proof builder on GPU servers, and of the wallet on phones.</li>
+      </ul></div>
+  </div>
+  <div class="notice"><b>This is a test network.</b> The test coins have no value, the code is not audited, and nothing here is an offer of any financial product.</div>
+</section>
+
+<section id="help">
+  <h2>Help build it</h2>
+  <p>Zen is built in the open and needs people who will look for what is wrong with it. An hour of careful review is worth more than praise.</p>
+  <div class="help">
+    <article><h3>Cryptographers</h3><p>Read the proof circuits and the soundness tests, and try to break them. The proofs use Plonky2 and Groth16.</p></article>
+    <article><h3>Rust developers</h3><p>Review the node, the transport and the wallet, write fuzzers, and fix what they find.</p></article>
+    <article><h3>Ceremony participants</h3><p>Take part in the public setup of the proof key. Each participant adds randomness, and one honest participant is enough.</p></article>
+    <article><h3>Testers</h3><p>Run the test network on a Mac or Linux machine, and later on a phone, and report what fails.</p></article>
+  </div>
+  <div class="chan"><a href="https://github.com/YoshiTakeshi/Zen" target="_blank" rel="noopener">GitHub repository</a><a href="https://discord.gg/sq2ANhXUP5" target="_blank" rel="noopener">Discord</a><a href="https://t.me/NenUserz" target="_blank" rel="noopener">Telegram</a><a href="https://reddit.com/r/NenUsers" target="_blank" rel="noopener">Reddit</a><a href="https://x.com/LudovicJustus" target="_blank" rel="noopener">X</a></div>
+</section>
+
+<section id="support">
+  <h2>Support the work</h2>
+  <p>Donations pay for the work that one person cannot do alone. This is a donation to open-source development. It is not an investment, and it gives no right to coins, tokens or returns.</p>
+  <div class="uses">
+    <div><b>Independent audit</b>A security firm reads the circuits and the consensus rules.</div>
+    <div><b>Public ceremony</b>Tools, hosting and checks so that anyone can verify the proof key.</div>
+    <div><b>Build machines</b>Time on GPU and many-core servers to measure the proof builder.</div>
+  </div>
+  <div class="cta" id="givethRow" hidden><a class="btn solid" id="givethBtn" href="#" target="_blank" rel="noopener">Donate on Giveth</a></div>
+  <p class="small muted" style="margin:22px 0 6px">Bitcoin address</p>
+  <div class="addr"><code id="btc">3Di7NCacvRmsRxxZ8Q6VDoXniVFZBrV8Pw</code><button class="btn" id="copy" type="button">Copy address</button></div>
+</section>
+</main>
+
+<footer>
+  <p><b>Zen</b>, by Justus L. Ludovic.</p>
+  <p>This site and its content have no connection to any meme coin or token on pump.fun or other platforms. If someone used this material, it was done without our knowledge or involvement.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  // Set this to the project's Giveth address to show the donate button.
+  var GIVETH_URL = "https://www.giveth.io/project/zen-money-you-can-hold-and-send";
+  if (GIVETH_URL) {
+    var b = document.getElementById("givethBtn"); b.href = GIVETH_URL;
+    document.getElementById("givethRow").hidden = false;
+    var h = document.getElementById("giveth"); h.href = GIVETH_URL; h.target = "_blank"; h.rel = "noopener";
+  }
+
+  // Copy button
+  var copy = document.getElementById("copy"), btc = document.getElementById("btc");
+  copy.addEventListener("click", function(){
+    var done = function(ok){ copy.textContent = ok ? "Copied" : "Select and copy"; setTimeout(function(){ copy.textContent = "Copy address"; }, 1800); };
+    try {
+      navigator.clipboard.writeText(btc.textContent).then(function(){ done(true); }, function(){ sel(); done(false); });
+    } catch (e) { sel(); done(false); }
+    function sel(){ var r = document.createRange(); r.selectNodeContents(btc); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+
+  // Block rhythms: all ticks are drawn at rest; a sweep line crosses a 15-minute window in 24 s and each tick pulses as it passes.
+  var NS = "http://www.w3.org/2000/svg", rows = [], ticks = [];
+  document.querySelectorAll("svg.track").forEach(function(svg){
+    var line = document.createElementNS(NS, "line");
+    line.setAttribute("x1", 0); line.setAttribute("x2", 1000); line.setAttribute("y1", 15); line.setAttribute("y2", 15);
+    line.setAttribute("class", "base"); svg.appendChild(line);
+    svg.dataset.ticks.split(",").forEach(function(p){
+      var x = parseFloat(p) * 1000, t = document.createElementNS(NS, "line");
+      t.setAttribute("x1", x); t.setAttribute("x2", x); t.setAttribute("y1", 3); t.setAttribute("y2", 27);
+      t.setAttribute("class", "tick"); t.style.stroke = svg.dataset.color; svg.appendChild(t);
+      ticks.push({el: t, at: parseFloat(p), fired: false});
+    });
+    var sw = document.createElementNS(NS, "line");
+    sw.setAttribute("class", "sweep"); sw.setAttribute("y1", 0); sw.setAttribute("y2", 30); sw.setAttribute("x1", 0); sw.setAttribute("x2", 0);
+    svg.appendChild(sw); rows.push(sw);
+  });
+  var clock = document.getElementById("clock");
+  var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (still) { rows.forEach(function(s){ s.style.display = "none"; }); clock.textContent = "15 min"; return; }
+  var LOOP = 24000, t0 = performance.now(), last = 0;
+  function frame(now){
+    var f = ((now - t0) % LOOP) / LOOP;
+    if (f < last) ticks.forEach(function(t){ t.fired = false; });
+    last = f;
+    rows.forEach(function(s){ s.setAttribute("x1", f * 1000); s.setAttribute("x2", f * 1000); });
+    ticks.forEach(function(t){
+      if (!t.fired && f >= t.at) { t.fired = true; t.el.classList.remove("pulse"); void t.el.getBoundingClientRect(); t.el.classList.add("pulse"); }
+    });
+    clock.textContent = Math.floor(f * 15) + " / 15 min";
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body></html>

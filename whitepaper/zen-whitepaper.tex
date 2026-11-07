@@ -1,0 +1,115 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sc]{mathpazo}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{courier}
+\linespread{1.06}
+\usepackage[a4paper,margin=2.4cm,top=2.5cm,bottom=2.6cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array,multirow}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric,backgrounds,decorations.pathreplacing}
+\usepackage{caption,subcaption}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+% Colours: chains and accents (same as the charts)
+\definecolor{yen}{HTML}{C98500}
+\definecolor{ken}{HTML}{2A78D6}
+\definecolor{jen}{HTML}{D95926}
+\definecolor{ink}{HTML}{1B1B1A}
+\definecolor{ink2}{HTML}{52514E}
+\definecolor{rule}{HTML}{D8D6D0}
+\definecolor{wash}{HTML}{F6F3EE}
+\definecolor{bluewash}{HTML}{EEF4FB}
+\definecolor{copperwash}{HTML}{FBEDE5}
+\hypersetup{colorlinks=true,linkcolor=jen!80!black,citecolor=ken!80!black,urlcolor=ken!80!black}
+
+\captionsetup{font={small,sf},labelfont={bf,sf},margin=0pt,skip=6pt}
+\setlist{itemsep=2pt,topsep=4pt,leftmargin=1.4em}
+\titleformat{\section}{\sffamily\Large\bfseries\color{ink}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\sffamily\large\bfseries\color{ink}}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\sffamily\normalsize\bfseries\color{ink}}{\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{5pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\sffamily\footnotesize\color{ink2}Zen: Money you can hold and send}
+\fancyhead[R]{\sffamily\footnotesize\color{ink2}White paper, draft 0.4}
+\fancyfoot[C]{\sffamily\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newcommand{\st}[1]{\textsf{\footnotesize\textbf{[#1]}}}
+\newcommand{\JEN}{\textsc{jen}}
+\newcommand{\KEN}{\textsc{ken}}
+\newcommand{\YEN}{\textsc{yen}}
+\newcommand{\SEN}{\textsc{sen}}
+\newcommand{\TEN}{\textsc{ten}}
+\newcommand{\REN}{\textsc{ren}}
+\newtcolorbox{keybox}[1][]{colback=wash,colframe=rule,boxrule=0.5pt,arc=2pt,left=8pt,right=8pt,top=6pt,bottom=6pt,fonttitle=\sffamily\bfseries\small,coltitle=ink,colbacktitle=wash,title=#1}
+\renewcommand{\arraystretch}{1.18}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\tikzset{
+  box/.style={draw=ink2,rounded corners=2pt,fill=white,font=\sffamily\small,align=center,inner sep=5pt,line width=0.6pt},
+  arr/.style={-{Stealth[length=2.2mm]},line width=0.7pt,color=ink2},
+  lbl/.style={font=\sffamily\scriptsize,color=ink2,align=center},
+}
+
+\hypersetup{pdfauthor={Justus L. Ludovic},pdftitle={Zen: metal money that reads its own value}}
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\vspace*{1.2cm}
+{\sffamily\color{ink2}\large White paper \textperiodcentered{} Draft 0.4 \textperiodcentered{} October 2026\par}
+\vspace{0.6cm}
+{\sffamily\bfseries\fontsize{34}{40}\selectfont\color{ink} Zen\par}
+\vspace{0.3cm}
+{\sffamily\fontsize{17}{22}\selectfont\color{ink} Metal money that reads its own value:\\ three chains for gold, silver and copper,\\ minted on phones and pegged by their payments\par}
+\vspace{1.1cm}
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \foreach \x/\c/\n/\m/\g in {0/yen/Golden Yen/Ren/4 g gold, 4.6/ken/Silver Ken/Ten/3 g silver, 9.2/jen/Bronze Jen/Sen/2 g copper}{
+    \fill[\c!14] (\x,0) circle (1.25);
+    \draw[\c,line width=1.6pt] (\x,0) circle (1.25);
+    \draw[\c,line width=0.6pt] (\x,0) circle (1.0);
+    \node[font=\sffamily\bfseries\large,color=ink] at (\x,0.18) {\m};
+    \node[font=\sffamily\scriptsize,color=ink2] at (\x,-0.32) {\g};
+    \node[font=\sffamily\small\bfseries,color=ink] at (\x,-1.75) {\n};
+    \node[font=\sffamily\scriptsize,color=ink2] at (\x,-2.15) {1 \n{} = 1 \m};
+  }
+\end{tikzpicture}
+\end{center}
+\vspace{0.9cm}
+{\sffamily\large\color{ink} Justus L. Ludovic\par}
+\vfill
+\begin{keybox}[Abstract]
+\small
+Zen is a monetary system of six coins: three physical coins of fixed metal weight, the gold Ren (4\,g), the silver Ten (3\,g) and the copper Sen (2\,g), and three public blockchains whose electronic coins are meant to be worth exactly one of them: Golden Yen, Silver Ken and Bronze Jen. No custodian holds the metal and no oracle reports its price. Each chain instead reads the value of its physical coin from its own payments: shops that price in coins pay exact sixths of a coin, and the chain compares those prices with ordinary payments to set the coin weight $S$, the number of base units that make one \JEN{} (or \KEN, or \YEN). Blocks are built by two kinds of work. Minters, who can be phones, hash a memory-hard puzzle to earn the right to prove groups of payments with zero-knowledge proofs and share the block's fees; miners seal the result with ordinary SHA-256 hardware and compete for new coins by a reward curve set by each metal's metallic ratio. This paper describes the whole system: the coins, the chains, Proof of Minting, mining and fork choice, block sizing by fee purity, the self-reading peg and its defences, the proof that turns a block, with its payments and its vault, channel, order and factory operations, into one 196-byte stamp, payment channels and channel factories, exchange between the chains, and Zen Net, a paid network layer on top. Every number in it comes from the draft protocol specification, measured prototypes or simulations, and each is marked as such. A Rust benchmark proves a block of 128 signed payments into one 196-byte proof that any node checks in 2--4\,ms, and a Rust test network now carries every operation of the system inside that same proof, with 583 rule-breaking tests that no operation circuit passes. Simulations show that the peg's defences turn an attack from a few thousand dollars of fees into millions of dollars of locked and lost capital with a hard ceiling of about 13\% a week, that a defender with half the attacker's money undoes an attack at about a twentieth of its cost, and that the peg converges to the physical coin's value only when most coin-priced shops set their prices from the metal. Taken together, physical and electronic coins on three linked chains form a self-correcting system: every node reads each chain's value nine ways from public data (payments, gram weights and the three exchanges), and an attack large enough to matter is detected and named within hours. Open problems are stated plainly.
+\end{keybox}
+\end{titlepage}
+
+\tableofcontents
+\vspace{0.6cm}
+\begin{keybox}[How to read this paper]
+\small
+Zen is a design in progress. Each rule carries a status taken from the protocol specification (draft 0.2): \st{Decided}, \st{Proposed} (designed and simulated, not yet adopted), \st{Open} (a choice still to make) or \st{TBD} (not yet specified). Results are labelled \emph{measured} (prototype code on real hardware), \emph{devnet} (a multi-node test network of the Go prototype, versions Jen-0.5 to Jen-0.11) \emph{testnet} (the Rust node \texttt{zenproof}, a three-chain test network, rounds 1 to 55) or \emph{simulated} (a model, described in Appendix~\ref{app:sims}). Dollar figures assume Jen at one million payments a day, a typical payment of \$5, copper at \$13.80/kg and therefore a Sen worth \$0.0276. Nothing here is investment advice, and no part of the system has been audited.
+\end{keybox}
+\newpage
+
+\input{sec1}
+\input{sec2}
+\input{sec3}
+\input{sec4}
+
+\end{document}

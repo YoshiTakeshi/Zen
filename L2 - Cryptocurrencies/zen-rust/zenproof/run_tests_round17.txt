@@ -1,0 +1,87 @@
+warning: value assigned to `b2` is never read
+   --> src/blockdata.rs:333:34
+    |
+333 |         assert_eq!(b2.bal, 100); b2.bal = 0;
+    |                                  ^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `h` is never read
+   --> src/seal.rs:145:66
+    |
+145 | ...   if BigUint::from_bytes_le(&sha256d(&hb)) <= target { h.nonce = nonce; return Some((Share { extranonce2: en2b, ntime, nonce, v...
+    |                                                            ^^^^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+
+warning: unused variable: `n`
+  --> src/prover.rs:92:9
+   |
+92 |     let n = c.n;
+   |         ^
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+help: you might have meant to pattern match on the similarly named constant `D`
+   |
+92 -     let n = c.n;
+92 +     let ec::D = c.n;
+   |
+help: if this is intentional, prefix it with an underscore
+   |
+92 |     let _n = c.n;
+   |         +
+
+warning: unused variable: `spend`
+   --> src/main.rs:901:17
+    |
+901 |             let spend = p.amt + p.fee;
+    |                 ^^^^^ help: if this is intentional, prefix it with an underscore: `_spend`
+
+warning: associated function `jen` is never used
+  --> src/reading.rs:79:26
+   |
+79 | impl ReadParams { pub fn jen() -> Self { ReadParams { std_fee_pm: 10, cap_bp: 3, min_obs: 100 } } }
+   | ---------------          ^^^
+   | |
+   | associated function in this implementation
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `zenproof` (bin "zenproof" test) generated 5 warnings (run `cargo fix --bin "zenproof" -p zenproof --tests` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.07s
+     Running unittests src/main.rs (target/release/deps/zenproof-0568f691b715aaad)
+
+running 27 tests
+test blockdata::peg_tests::invariants_hold_under_random_use ... ok
+test blockdata::peg_tests::loop_counts_once_per_rest_period ... ok
+test blockdata::peg_tests::rested_money_counts_once_per_period_even_when_fresh_is_spent_first ... ok
+test bn::bench2::mul_speed ... ok
+test bn::tests::pack_and_to_vec_match_bigint ... ok
+test ec::tests::dbladd_rejects_equal_points ... ok
+test ec::tests::s_less_than_n ... ok
+test mint::tests::point_roundtrip_and_subgroup ... ok
+test mint::tests::retarget_rule ... ok
+test mint::tests::signatures ... ok
+test bn::bench::permute_speed ... ok
+test node::tests::restart_from_the_log_gives_the_same_chain ... ok
+test node::tests::chain_accepts_blocks_and_rejects_each_kind_of_bad_block ... ok
+test node::tests::seal_difficulty_follows_the_window ... ok
+test node::tests::s_is_read_from_payments_across_a_day_boundary ... ok
+test p2p::tests::fork_choice_orphans_and_reorg ... ok
+test p2p::tests::stratum_miner_seals_a_block_and_the_node_relays_it ... ok
+test p2p::tests::real_stamps_are_verified_by_the_node has been running for over 60 seconds
+test p2p::tests::two_nodes_sync_and_relay_over_tcp ... ok
+test reading::tests::follows_slowly_within_the_band ... ok
+test reading::tests::hard_bound_of_a_maximal_push ... ok
+test reading::tests::push_is_bounded ... ok
+test reading::tests::reads_the_ratio ... ok
+test reading::tests::standard_fee_and_cap ... ok
+test reading::tests::table_is_log_spaced ... ok
+test seal::tests::bitcoin_genesis ... ok
+test seal::tests::compact_bits ... ok
+test p2p::tests::real_stamps_are_verified_by_the_node ... ok
+
+test result: ok. 27 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 141.25s
+
+done

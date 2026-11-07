@@ -1,0 +1,1 @@
+Prototype code, kept as it was when written (Go, gnark). There is no go.mod here: run `go mod init` and `go mod tidy` with a gnark version that matches your Go version (see README.md). It was not rebuilt when this folder was assembled.
