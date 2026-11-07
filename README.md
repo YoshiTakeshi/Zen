@@ -8,6 +8,15 @@ Zen (from the Arabic *Mizan*, "the balance": ⵣⴻⵏ, 全, الميزان) is 
 
 > Zen is still in research and development. It runs only as a test network: the test coins have no value, and the code is not audited. Ideas, questions and criticism are welcome.
 
+## Watch and read
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=c3Mrpw75twc"><img src="https://img.youtube.com/vi/c3Mrpw75twc/hqdefault.jpg" width="480" title="Zen, Episode 1: A Short History of Trust"></a>
+</p>
+
+- **Video series:** [Episode 1, A Short History of Trust](https://www.youtube.com/watch?v=c3Mrpw75twc) on YouTube
+- **Blog** (Tor Browser needed): http://wmjtj25a6x3u2bzp44iei76gfprmmllm6kvd4ocr7qwsmnwkqrey3qad.onion/
+
 ## Six coins, one reference
 
 | Physical coin | Metal | Use | Electronic twin | Block time |
