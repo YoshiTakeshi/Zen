@@ -84,6 +84,10 @@ Donations pay for an independent audit, the public ceremony and time on build ma
   <img src="img/donate.png" width="200" title="Donate">
 </p>
 
+## License
+
+The code is under the [Apache License 2.0](LICENSE).
+
 ---
 
 Zen, by Justus L. Ludovic. This project has no connection to any meme coin or token on pump.fun or other platforms.
